@@ -1,0 +1,22 @@
+{
+  "name": "blog.pascall-creator.com",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "^0.31.2",
+    "materialize-css": "^1.0.0",
+    "morgan": "~1.9.1",
+    "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "ejs": "^3.1.6",
+    "tailwindcss": "^3.0.19"
+  }
+}
