@@ -9,6 +9,7 @@
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "flowbite": "^1.3.3",
     "http-errors": "~1.6.3",
     "jade": "^0.31.2",
     "materialize-css": "^1.0.0",
