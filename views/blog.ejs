@@ -3,8 +3,191 @@
 <%- include("./partials/head.ejs") %>
 <body>
   <%- include("./partials/nav.ejs") %>
-  <div class="container mx-auto bg-blue-50">
-      <img class="" src="./static/images/banner.png" alt="">
+  <div id="main" class="container mx-auto sm:p-0 md:p-2 lg:p-2">
+    <a href="#" class="container mx-auto flex flex-col lg:flex-row focus:hover:shadow-lg focus:outline-none focus:border-2 focus:border-dashed focus:border-cyan-300">
+      <img class="object-cover h-96 w-auto md:w-100% md:rounded-none sm:w-100%" src="./static/images/banner.png" alt="">
+      <div class="ml-5 mt-5 flex-col md:ml-0 lg:ml-5 p-1">
+        <div class="flex mb-3 items-end">
+          <p class="text-base w-max mr-1 text-black ">Web dev.</p>
+          <p class="w-max text-gray-900">Feb 13 2022.</p>
+        </div>
+        <h1 class="mr-1 mb-3 text-gray-700 sm:text-xl font-semibold leading-normal md:text-2xl 2xl:text-4xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, accusantium!</h1>
+        <p class="text-gray-900 text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus magnam eveniet iure blanditiis ut dicta odio, dolorem facilis laboriosam, aut quam. Dolorum corporis sed labore est? Rem ipsam quasi inventore.</p>
+        <p class="text-gray-900 text-base hidden 2xl:block">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit soluta voluptatibus, assumenda nostrum minus quod id voluptatem? Iste libero assumenda adipisci placeat voluptate cupiditate, accusamus obcaecati qui consequatur. Modi, necessitatibus?</p>
+        <p class="text-gray-900 text-base hidden 2xl:block">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid accusantium nesciunt exercitationem sequi ea. Ab quas consequatur praesentium deserunt possimus.</p>
+      </div>
+    </a>
+    <h1 class="text-2xl mt-10 font-semibold ml-5 border-t-2 pt-3 md:border-t-0 border-t-gray-500 text-gray-900">Latest Posts.</h1>
+    <div class="mt-10 grid grid-rows-2 grid-flow-col gap-4 md:grid-rows-2 lg:grid-rows-1 lg:grid-cols-3 ">
+      <a href="#" class="card flex flex-col my-5  bg-gray-100 shadow-md p-3 rounded-md hover:shadow-lg focus:hover:shadow-lg focus:outline-none focus:border-2 focus:border-dashed focus:border-cyan-300">
+        <img class="object-cover h-80 w-auto mx-auto md:w-100% md:rounded-none sm:w-100% md:w-100% md:h-auto" src="./static/images/banner.png" alt="">
+        <div class="ml-5 mt-5 flex-col md:ml-0 lg:ml-5">
+          <div class="flex mb-3 items-end">
+            <p class="text-base w-max mr-1 text-black ">Web dev.</p>
+            <p class="w-max text-gray-900">Feb 13 2022.</p>
+          </div>
+          <h1 class="mr-1 mb-3 text-gray-700 sm:text-lg font-semibold leading-normal md:text-2xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, accusantium!</h1>
+          <p class="text-gray-900 text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam accusantium, odit sit reprehenderit accusamus, quo et fugit, libero quis dicta recusandae dolor hic delectus sequi.</p>
+        </div>
+      </a>
+      <a href="#" class="card flex flex-col my-5 bg-gray-100 shadow-md p-3 rounded-md hover:shadow-lg focus:hover:shadow-lg focus:outline-none focus:border-2 focus:border-dashed focus:border-cyan-300">
+        <img class="object-cover h-80 w-auto mx-auto md:w-100% md:rounded-none sm:w-100% md:w-100% md:h-auto" src="./static/images/banner.png" alt="">
+        <div class="ml-5 mt-5 flex-col md:ml-0 lg:ml-5">
+          <div class="flex mb-3 items-end">
+            <p class="text-base w-max mr-1 text-black ">Web dev.</p>
+            <p class="w-max text-gray-900">Feb 13 2022.</p>
+          </div>
+          <h1 class="mr-1 mb-3 text-gray-700 sm:text-lg font-semibold leading-normal md:text-2xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, accusantium!</h1>
+          <p class="text-gray-900 text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam accusantium, odit sit reprehenderit accusamus, quo et fugit, libero quis dicta recusandae dolor hic delectus sequi.</p>
+        </div>
+      </a>
+      <a href="#" class="card flex flex-col my-5 hidden bg-gray-100 shadow-md p-3 rounded-md lg:block hover:shadow-lg focus:hover:shadow-lg focus:outline-none focus:border-2 focus:border-dashed focus:border-cyan-300">
+        <img class="object-cover h-80 w-auto mx-auto md:w-100% md:rounded-none sm:w-100% md:w-100% md:h-auto" src="./static/images/banner.png" alt="">
+        <div class="ml-5 mt-5 flex-col md:ml-0 lg:ml-5">
+          <div class="flex mb-3 items-end">
+            <p class="text-base w-max mr-1 text-black ">Web dev.</p>
+            <p class="w-max text-gray-900">Feb 13 2022.</p>
+          </div>
+          <h1 class="mr-1 mb-3 text-gray-700 sm:text-lg font-semibold leading-normal md:text-2xl">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, accusantium!</h1>
+          <p class="text-gray-900 text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam accusantium, odit sit reprehenderit accusamus, quo et fugit, libero quis dicta recusandae dolor hic delectus sequi.</p>
+        </div>
+      </a>
+    </div>
+    <h1 class="text-2xl mt-10 font-semibold ml-5 border-t-2 pt-3 md:border-t-0 border-t-gray-500 text-gray-900">Other Posts.</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 grid-flow-row mt-10 lg:grid-cols-2 container"> 
+      <div class="card flex flex-col my-2 mx-auto bg-gray-100 shadow-md p-3 rounded-md hover:shadow-lg w-95pes focus:hover:shadow-lg focus:outline-none focus:border-2 focus:border-dashed focus:border-cyan-300">
+        <div class="flex-col">
+          <div class="flex mb-3 items-end">
+            <p class="text-base w-max mr-1 text-black">Web dev.</p>
+            <p class="w-max text-gray-900">Feb 13 2022.</p>
+          </div>
+          <a href="#" class="mr-1 mb-3 text-gray-700 sm:text-lg font-semibold leading-normal md:text-2xl">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt, minima.</a>
+          <p class="text-gray-900 text-base">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis exercitationem possimus ratione suscipit accusantium accusamus eos consequuntur quidem blanditiis magnam, non quaerat, dolores ea? Odit!</p>
+          <div class="container flex mt-5">
+            <div>
+              <a href="#" class="flex items-center py-1 px-2 rounded-md bg-gray-300 focus:outline-none focus:border-2 focus:border-dashed focus:border-cyan-300">
+                <i href="#"  class="fa-regular fa-heart mr-2"></i>
+                <span id="like-count" class="mr-2">13</span>
+                <span id="likes" class="hidden md:block">reactions</span>
+              </a>
+            </div>
+            <div>
+              <a href="#" class="flex items-center ml-2 py-1 px-2 rounded-md bg-gray-300 focus:outline-none focus:border-2 focus:border-dashed focus:border-cyan-300">
+                <i href="#"  class="fa-regular fa-comment mr-2"></i>
+                <span id="comment-count" class="mr-2">13</span>
+                <span id="comments" class="hidden md:block">comments</span>
+              </a>
+            </div>
+            <div class="ml-auto">
+              <a href="#" class="flex items-center py-1 px-2 rounded-md bg-gray-300 focus:outline-none focus:border-2 focus:border-dashed focus:border-cyan-300">
+                <i href="#" class="fa-regular fa-bookmark mr-2"></i>
+                <span id="save-count" class="mr-2">13</span>
+                <span id="saves" class="hidden md:block">saves</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>  
+      <div class="card flex flex-col my-2 mx-auto bg-gray-100 shadow-md p-3 rounded-md hover:shadow-lg w-95pes focus:hover:shadow-lg focus:outline-none focus:border-2 focus:border-dashed focus:border-cyan-300">
+        <div class="flex-col">
+          <div class="flex mb-3 items-end">
+            <p class="text-base w-max mr-1 text-black">Web dev.</p>
+            <p class="w-max text-gray-900">Feb 13 2022.</p>
+          </div>
+          <a href="#" class="mr-1 mb-3 text-gray-700 sm:text-lg font-semibold leading-normal md:text-2xl">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt, minima.</a>
+          <p class="text-gray-900 text-base">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis exercitationem possimus ratione suscipit accusantium accusamus eos consequuntur quidem blanditiis magnam, non quaerat, dolores ea? Odit!</p>
+          <div class="container flex mt-5">
+            <div>
+              <a href="#" class="flex items-center py-1 px-2 rounded-md bg-gray-300 focus:outline-none focus:border-2 focus:border-dashed focus:border-cyan-300">
+                <i href="#"  class="fa-regular fa-heart mr-2"></i>
+                <span id="like-count" class="mr-2">13</span>
+                <span id="likes" class="hidden md:block">reactions</span>
+              </a>
+            </div>
+            <div>
+              <a href="#" class="flex items-center ml-2 py-1 px-2 rounded-md bg-gray-300 focus:outline-none focus:border-2 focus:border-dashed focus:border-cyan-300">
+                <i href="#"  class="fa-regular fa-comment mr-2"></i>
+                <span id="comment-count" class="mr-2">13</span>
+                <span id="comments" class="hidden md:block">comments</span>
+              </a>
+            </div>
+            <div class="ml-auto">
+              <a href="#" class="flex items-center py-1 px-2 rounded-md bg-gray-300 focus:outline-none focus:border-2 focus:border-dashed focus:border-cyan-300">
+                <i href="#" class="fa-regular fa-bookmark mr-2"></i>
+                <span id="save-count" class="mr-2">13</span>
+                <span id="saves" class="hidden md:block">saves</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>  
+      <div class="card flex flex-col my-2 mx-auto bg-gray-100 shadow-md p-3 rounded-md hover:shadow-lg w-95pes focus:hover:shadow-lg focus:outline-none focus:border-2 focus:border-dashed focus:border-cyan-300">
+        <div class="flex-col">
+          <div class="flex mb-3 items-end">
+            <p class="text-base w-max mr-1 text-black">Web dev.</p>
+            <p class="w-max text-gray-900">Feb 13 2022.</p>
+          </div>
+          <a href="#" class="mr-1 mb-3 text-gray-700 sm:text-lg font-semibold leading-normal md:text-2xl">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt, minima.</a>
+          <p class="text-gray-900 text-base">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis exercitationem possimus ratione suscipit accusantium accusamus eos consequuntur quidem blanditiis magnam, non quaerat, dolores ea? Odit!</p>
+          <div class="container flex mt-5">
+            <div>
+              <a href="#" class="flex items-center py-1 px-2 rounded-md bg-gray-300 focus:outline-none focus:border-2 focus:border-dashed focus:border-cyan-300">
+                <i href="#"  class="fa-regular fa-heart mr-2"></i>
+                <span id="like-count" class="mr-2">13</span>
+                <span id="likes" class="hidden md:block">reactions</span>
+              </a>
+            </div>
+            <div>
+              <a href="#" class="flex items-center ml-2 py-1 px-2 rounded-md bg-gray-300 focus:outline-none focus:border-2 focus:border-dashed focus:border-cyan-300">
+                <i href="#"  class="fa-regular fa-comment mr-2"></i>
+                <span id="comment-count" class="mr-2">13</span>
+                <span id="comments" class="hidden md:block">comments</span>
+              </a>
+            </div>
+            <div class="ml-auto">
+              <a href="#" class="flex items-center py-1 px-2 rounded-md bg-gray-300 focus:outline-none focus:border-2 focus:border-dashed focus:border-cyan-300">
+                <i href="#" class="fa-regular fa-bookmark mr-2"></i>
+                <span id="save-count" class="mr-2">13</span>
+                <span id="saves" class="hidden md:block">saves</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>  
+      <div class="card flex flex-col my-2 mx-auto bg-gray-100 shadow-md p-3 rounded-md hover:shadow-lg w-95pes focus:hover:shadow-lg focus:outline-none focus:border-2 focus:border-dashed focus:border-cyan-300">
+        <div class="flex-col">
+          <div class="flex mb-3 items-end">
+            <p class="text-base w-max mr-1 text-black">Web dev.</p>
+            <p class="w-max text-gray-900">Feb 13 2022.</p>
+          </div>
+          <a href="#" class="mr-1 mb-3 text-gray-700 sm:text-lg font-semibold leading-normal md:text-2xl">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt, minima.</a>
+          <p class="text-gray-900 text-base">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis exercitationem possimus ratione suscipit accusantium accusamus eos consequuntur quidem blanditiis magnam, non quaerat, dolores ea? Odit!</p>
+          <div class="container flex mt-5">
+            <div>
+              <a href="#" class="flex items-center py-1 px-2 rounded-md bg-gray-300 focus:outline-none focus:border-2 focus:border-dashed focus:border-cyan-300">
+                <i href="#"  class="fa-regular fa-heart mr-2"></i>
+                <span id="like-count" class="mr-2">13</span>
+                <span id="likes" class="hidden md:block">reactions</span>
+              </a>
+            </div>
+            <div>
+              <a href="#" class="flex items-center ml-2 py-1 px-2 rounded-md bg-gray-300 focus:outline-none focus:border-2 focus:border-dashed focus:border-cyan-300">
+                <i href="#"  class="fa-regular fa-comment mr-2"></i>
+                <span id="comment-count" class="mr-2">13</span>
+                <span id="comments" class="hidden md:block">comments</span>
+              </a>
+            </div>
+            <div class="ml-auto">
+              <a href="#" class="flex items-center py-1 px-2 rounded-md bg-gray-300 focus:outline-none focus:border-2 focus:border-dashed focus:border-cyan-300">
+                <i href="#" class="fa-regular fa-bookmark mr-2"></i>
+                <span id="save-count" class="mr-2">13</span>
+                <span id="saves" class="hidden md:block">saves</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>  
+    </div>
   </div>
   <%- include("./partials/footer.ejs") %>
   <%- include("./partials/footer.ejs") %>
