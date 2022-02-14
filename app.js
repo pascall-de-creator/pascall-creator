@@ -1,5 +1,12 @@
 const express = require('express');
-const path = require('path')
+const path = require('path');
+const axios = require('axios');
+var blogFeedData;
+
+const fetchFeed = axios.get('http://localhost:8000/blogs')
+  .then(resp => {
+    blogFeedData = resp.data
+});
 
 var app = express();
 
@@ -11,6 +18,7 @@ const PORT = process.env.PORT || 3000
 
 //middleware
 app.use('/static', express.static(path.join(__dirname, 'public')))
+
 app.use('/dist', express.static(path.join(__dirname, 'dist')))
 
 app.get("/", (req, res) => {
@@ -18,13 +26,21 @@ app.get("/", (req, res) => {
 })
 
 app.get("/blog", (req, res) => {
-  res.render('blog', {title: "The astro blog", path: req.route.path})
+  if(req.query.page == 1){
+    res.render('blog', {title: "The astro blog", path: req.route.path, blogFeedData, pageNumber: req.query.page})
+  }
+  else if(req.query.page > 1) {
+    res.render('blog-page', {title: "more astro blogs", path: req.route.path, blogFeedData, pageNumber: req.query.page })
+  }
+  else{
+    res.render('blog', {title: "The astro blog", path: req.route.path, blogFeedData, pageNumber: 1})
+  }
+  
 })
 
 app.get("/about", (req, res) => {
   res.render('about', {title: "The astronaut", path: req.route.path})
 })
 //create webpack 404 error page
-
 
 app.listen(PORT)

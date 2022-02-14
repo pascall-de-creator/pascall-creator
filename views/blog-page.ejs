@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include("./partials/head.ejs") %>
+<body>
+  <%- include("./partials/nav.ejs") %>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-2 grid-flow-row mt-10 lg:grid-cols-2"> 
+    <% var page_num = parseInt(pageNumber)-1 %>
+    <% var page_num = page_num*12 %>
+    <% if(Object.keys(blogFeedData.all).length != 0){ %> 
+      <% for (let index = page_num; index < page_num + 12; index++) { %>
+        <% if(index < Object.keys(blogFeedData.all).length) { %> 
+          <div class="card flex flex-col mb-1 bg-gray-100 p-3 rounded-md border-2 border-gray-200 sm:max-w-full dark:bg-gray-800 dark:border-gray-700">
+          <div class="flex-col">
+            <div class="flex mb-3 items-end">
+              <p class="text-sm w-max mr-1 text-black dark:text-white"><%= blogFeedData.all[index].category %> • </p>
+              <p class="w-max text-xs text-gray-900 dark:text-gray-300"><%= blogFeedData.all[index].date_published %></p>
+            </div>
+            <div class="tags flex my-2">
+              <a href="/tags/<%= blogFeedData.all[index].tags[0] %>" class="tag border-2 border-cyan-300 bg-cyan-200 py-1 px-2 rounded-md text-xs mr-1 focus:outline-none focus:border-blue-500"><%= blogFeedData.all[index].tags[0] %></a>
+              <a href="/tags/<%= blogFeedData.all[index].tags[1] %>" class="tag border-2 border-red-300 bg-red-200 py-1 px-2 rounded-md text-xs mr-1 focus:outline-none focus:border-blue-500"><%= blogFeedData.all[index].tags[1] %></a>
+              <a href="/tags/<%= blogFeedData.all[index].tags[2] %>" class="tag border-2 border-green-300 bg-green-200 py-1 px-2 rounded-md text-xs mr-1 focus:outline-none focus:border-blue-500"><%= blogFeedData.all[index].tags[2] %></a>
+            </div>
+            <a href="<%= blogFeedData.all[index].link %>" class="mb-3 text-gray-700 sm:text-lg font-semibold leading-normal md:text-2xl w-full hover:text-blue-400 dark:hover:text-blue-400 dark:text-gray-200  focus:outline-none focus:text-blue-400 dark:focus:text-blue-400"><%= blogFeedData.all[index].headline %></a><br>
+            <a href="<%= blogFeedData.all[index].link %>" class="text-gray-900 text-base dark:text-gray-200"><%= blogFeedData.all[index].content_1 %></a>
+            <div class="flex mt-5">
+              <div>
+                <a href="#" class="flex items-center py-1 px-2 rounded-md focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-white">
+                  <i href="#"  class="fa-regular fa-heart mr-2"></i>
+                  <span id="like-count" class="mr-2"><%= blogFeedData.all[index].reactions %></span>
+                  <span id="likes" class="hidden md:block">reactions</span>
+                </a>
+              </div>
+              <div>
+                <a href="#" class="flex items-center ml-2 py-1 px-2 rounded-md focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-white">
+                  <i href="#"  class="fa-regular fa-comment mr-2"></i>
+                  <span id="comment-count" class="mr-2"><%= blogFeedData.all[index].comments %></span>
+                  <span id="comments" class="hidden md:block">comments</span>
+                </a>
+              </div>
+              <div class="ml-auto">
+                <a href="#" class="flex items-center py-1 px-2 rounded-md focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-white">
+                  <i href="#" class="fa-regular fa-bookmark mr-2"></i>
+                  <span id="save-count" class="mr-2"><%= blogFeedData.all[index].saves %></span>
+                  <span id="saves" class="hidden md:block">saves</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          </div>  
+        <% } %>        
+      <% } %> 
+    <% if(pageNumber > Object.keys(blogFeedData.all).length / 12) { %>  
+      <h1>Nothing here</h1>
+    <% } %>
+    <% } else { %>  
+      <h1>Nothing here</h1>
+    <% } %>
+  </div>
+  <%- include("./partials/pagination.ejs") %>
+  <%- include("./partials/footer.ejs") %>
+</body>
