@@ -1,4 +1,4 @@
-<% var lastpage = Object.keys(blogFeedData.all).length / 12 %> 
+<% var lastpage = Object.keys(blogFeedData).length / 12 %> 
 <% if( lastpage % 1 !== 0){ %> 
   <% lastpage = Math.floor(lastpage)+1 %> 
 <% } else { %> 
@@ -19,7 +19,7 @@
           <li><a href="?page=1" class="py-2 px-4 rounded-md mx-2 focus:outline-none focus:bg-cyan-400 hover:bg-cyan-400 dark:text-white">1</a></li>
         <% } %> 
         <li class="py-2 px-4 rounded-md mx-2 dark:text-white">...</li>
-        <input type="number" name="number" class="bg-white dark:bg-gray-500" min="1" max="<%= lastpage %>" value="<%= pageNumber %>" onchange="moveTo(this.value)">
+        <input type="number" name="number" class="bg-white dark:bg-gray-700 dark:text-white" min="1" max="<%= lastpage %>" value="<%= pageNumber %>" onchange="moveTo(this.value)">
         <li class="py-2 px-4 rounded-md mx-2 dark:text-white">...</li>
         <% if (pageNumber == lastpage ) { %> 
           <li><a href="?page=<%= lastpage %>" class="py-2 px-4 rounded-md mx-2 bg-cyan-500 focus:outline-none focus:bg-cyan-400 hover:bg-cyan-400 dark:text-white"><%= lastpage %></a></li>
@@ -27,7 +27,7 @@
           <li><a href="?page=<%= lastpage %>" class="py-2 px-4 rounded-md mx-2 focus:outline-none focus:bg-cyan-400 hover:bg-cyan-400 dark:text-white"><%= lastpage %></a></li>
         <% } %> 
 
-        <% if (pageNumber <= Object.keys(blogFeedData.all).length / 12) { %>
+        <% if (pageNumber <= Object.keys(blogFeedData).length / 12) { %>
           <li><a href="?page=<%= parseInt(pageNumber) + 1 %>"><i class="fa-solid fa-angle-right py-3 px-4 rounded-md mx-2 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 dark:text-white"></i></a></li>
         <% } %>
     </ul>

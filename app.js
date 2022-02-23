@@ -2,10 +2,20 @@ const express = require('express');
 const path = require('path');
 const axios = require('axios');
 var blogFeedData;
+var topBlogFeedData;
+var newBlogFeedData;
 
-const fetchFeed = axios.get('http://localhost:8000/blogs')
+const fetchFeed_all = axios.get('http://localhost:8000/all?_sort="date_published&_order="dec"')
   .then(resp => {
     blogFeedData = resp.data
+});
+const fetchFeed_top = axios.get('http://localhost:8000/all?_sort="reactions"&_order="dec"')
+  .then(resp => {
+    topBlogFeedData = resp.data
+});
+const fetchFeed_new = axios.get('http://localhost:8000/all?_sort="date_published"&_order="dec"')
+  .then(resp => {
+    newBlogFeedData = resp.data
 });
 
 var app = express();
@@ -27,13 +37,13 @@ app.get("/", (req, res) => {
 
 app.get("/blog", (req, res) => {
   if(req.query.page == 1){
-    res.render('blog', {title: "The astro blog", path: req.route.path, blogFeedData, pageNumber: req.query.page})
+    res.render('blog', {title: "The astro blog", path: req.route.path, blogFeedData, newBlogFeedData, topBlogFeedData, pageNumber: req.query.page})
   }
   else if(req.query.page > 1) {
-    res.render('blog-page', {title: "more astro blogs", path: req.route.path, blogFeedData, pageNumber: req.query.page })
+    res.render('blog', {title: "The astro blog", path: req.route.path, blogFeedData, newBlogFeedData, topBlogFeedData, pageNumber: req.query.page })
   }
   else{
-    res.render('blog', {title: "The astro blog", path: req.route.path, blogFeedData, pageNumber: 1})
+    res.render('blog', {title: "The astro blog", path: req.route.path, newBlogFeedData, topBlogFeedData, blogFeedData, pageNumber: 1})
   }
   
 })
