@@ -6,11 +6,11 @@
   <div id="main" class="container mx-auto sm:p-0 md:p-2 lg:p-2">
     <% if(Object.keys(blogFeedData).length != 0){ %> 
       <div class="mx-auto flex flex-col lg:flex-row focus:hover:shadow-lg focus:outline-none focus:border-2 focus:border-dashed  focus:border-cyan-300">
-        <img class="object-cover h-96 md:w-100% md:rounded-none sm:w-100%" src="<%= topBlogFeedData[0].image %>" alt="<%= topBlogFeedData[0].image_alt %>"> 
+        <img width="auto" height="auto" class="object-cover h-96 md:w-100% rounded-md sm:w-100%" src="<%= topBlogFeedData[0].image %>" alt="<%= topBlogFeedData[0].image_alt %>"> 
         <div class="ml-5 mt-5 flex flex-col justify-between md:ml-0 lg:ml-5 p-1">
           <div class="flex flex-col">
             <div class="flex mb-3 items-end">
-              <a href="/category/<%= topBlogFeedData[0].category %>" class="text-base w-max mr-1 text-black focus:text-blue-600 focus:outline-none dark:text-white"><%= topBlogFeedData[0].category %> • </a>
+              <a href="/category/<%= topBlogFeedData[0].category %>" class="text-gray-900 text-base w-max mr-1 focus:text-blue-600 focus:outline-none dark:text-white"><%= topBlogFeedData[0].category %> • </a>
               <p class="w-max text-gray-900 dark:text-gray-300"><%= topBlogFeedData[0].date_published %></p>
             </div>
             <div class="tags flex my-2 w-max">
@@ -23,20 +23,20 @@
               <a href="<%= topBlogFeedData[0].link %>"><p class="text-gray-900 text-base dark:text-gray-200 focus:outline-none"><%= topBlogFeedData[0].content_1 %></p></a>
               <a href="<%= topBlogFeedData[0].link %>"><p class="text-gray-900 text-base hidden 2xl:block dark:text-gray-200 focus:outline-none"><%= topBlogFeedData[0].content_2 %></p></a>
             </div>
-            <a href="/user/<%= topBlogFeedData[0].author %>" class="w-max mt-5 py-1 px-2 rounded-md focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-white">@ <%= topBlogFeedData[0].author %></a>
+            <a href="/user/<%= topBlogFeedData[0].author %>" class="text-gray-900  w-max mt-5 py-1 px-2 rounded-md focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-white">@ <%= topBlogFeedData[0].author %></a>
           </div>
           <div class="flex mt-5 lg:justify-between">
             <a href="#" class="flex items-center py-1 px-2 rounded-md focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-white">
-              <i class="fa-regular fa-heart mr-2"></i>
-              <span id="like-count" class="mr-2"><%= topBlogFeedData[0].reactions %></span>
+              <i class="text-gray-900  fa-regular fa-heart mr-2 dark:text-white"></i>
+              <span id="like-count" class="text-gray-900  mr-2 dark:text-white"><%= topBlogFeedData[0].reactions %></span>
             </a>
             <a href="#" class="flex items-center ml-2 py-1 px-2 rounded-md focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-white">
-              <i class="fa-regular fa-comment mr-2"></i>
-              <span id="comment-count" class="mr-2"><%= topBlogFeedData[0].comments %></span>
+              <i class="text-gray-900  fa-regular fa-comment mr-2 dark:text-white"></i>
+              <span id="comment-count" class="text-gray-900  mr-2 dark:text-white"><%= topBlogFeedData[0].comments %></span>
             </a>
             <a href="#" class="ml-auto flex items-center py-1 px-2 rounded-md focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-white">
-              <i class="fa-regular fa-bookmark mr-2"></i>
-              <span id="save-count" class="mr-2"><%= topBlogFeedData[0].saves %></span>
+              <i class="text-gray-900  fa-regular fa-bookmark mr-2 dark:text-white"></i>
+              <span id="save-count" class="text-gray-900  mr-2 dark:text-white"><%= topBlogFeedData[0].saves %></span>
             </a>
           </div>
         </div>
@@ -46,10 +46,10 @@
         <% for (let index = 0; index < 4; index++) { %>
           <div class="justify-between card flex flex-col my-1 max-w-sm p-2 bg-gray-100 border-2 border-gray-200 rounded-md dark:bg-gray-800 dark:border-gray-700">
             <div class="flex flex-col">
-              <img class="max-h-60 object-fill w-auto mx-auto md:w-auto md:rounded-none sm:w-100% md:w-100% md:h-auto" src="<%= newBlogFeedData[index].image %>" alt="<%= newBlogFeedData[index].image_alt %>">
+              <img width="auto" height="auto" class="max-h-60 object-fill w-auto mx-auto md:w-auto rounded-md sm:w-100% md:w-100% md:h-auto" src="<%= newBlogFeedData[index].image %>" alt="<%= newBlogFeedData[index].image_alt %>">
               <div class="mt-5 flex-col">
                 <div class="flex mb-3 items-end">
-                  <p class="text-sm w-max mr-1 text-black dark:text-white"><%= newBlogFeedData[index].category %> • </p>
+                  <p class="text-sm w-max mr-1 text-gray-900  dark:text-white"><%= newBlogFeedData[index].category %> • </p>
                   <p class="w-max text-xs text-gray-900 dark:text-gray-300"><%= newBlogFeedData[index].date_published %></p>
                 </div>
                 <div class="tags flex my-2">
@@ -65,16 +65,16 @@
 
             <div class="flex mt-5">
               <a href="#" class="flex items-center py-1 px-2 rounded-md focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-white">
-                <i href="#"  class="fa-regular fa-heart mr-2"></i>
-                <span id="like-count" class="mr-2"><%= newBlogFeedData[index].reactions %></span>
+                <i href="#"  class="text-gray-900 fa-regular fa-heart mr-2 dark:text-white"></i>
+                <span id="like-count" class="text-gray-900 mr-2 dark:text-white"><%= newBlogFeedData[index].reactions %></span>
               </a>
               <a href="#" class="flex items-center ml-2 py-1 px-2 rounded-md focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-white">
-                <i href="#"  class="fa-regular fa-comment mr-2"></i>
-                <span id="comment-count" class="mr-2"><%= newBlogFeedData[index].comments %></span>
+                <i href="#"  class="text-gray-900 fa-regular fa-comment mr-2 dark:text-white"></i>
+                <span id="comment-count" class="text-gray-900 mr-2 dark:text-white"><%= newBlogFeedData[index].comments %></span>
               </a>
               <a href="#" class="ml-auto flex items-center py-1 px-2 rounded-md focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-white">
-                <i href="#" class="fa-regular fa-bookmark mr-2"></i>
-                <span id="save-count" class="mr-2"><%= newBlogFeedData[index].saves %></span>
+                <i href="#" class="text-gray-900 fa-regular fa-bookmark mr-2 dark:text-white"></i>
+                <span id="save-count" class="text-gray-900 mr-2 dark:text-white"><%= newBlogFeedData[index].saves %></span>
               </a>
             </div>
           </div>
@@ -90,7 +90,7 @@
               <div class="card flex flex-col mb-1 bg-gray-100 p-3 rounded-md border-2 border-gray-200 sm:max-w-full dark:bg-gray-800 dark:border-gray-700">
                 <div class="flex-col">
                   <div class="flex mb-3 items-end">
-                    <p class="text-sm w-max mr-1 text-black dark:text-white"><%= blogFeedData[index].category %> • </p>
+                    <p class="text-sm w-max mr-1 text-gray-900  dark:text-white"><%= blogFeedData[index].category %> • </p>
                     <p class="w-max text-xs text-gray-900 dark:text-gray-300"><%= blogFeedData[index].date_published %></p>
                   </div>
                   <div class="tags flex my-2">
@@ -103,23 +103,23 @@
                   <div class="flex mt-5">
                     <div>
                       <a href="#" class="flex items-center py-1 px-2 rounded-md focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-white">
-                        <i href="#"  class="fa-regular fa-heart mr-2"></i>
-                        <span id="like-count" class="mr-2"><%= blogFeedData[index].reactions %></span>
-                        <span id="likes" class="hidden md:block">reactions</span>
+                        <i href="#"  class="text-gray-900 fa-regular fa-heart mr-2 dark:text-white"></i>
+                        <span id="like-count" class="text-gray-900 mr-2 dark:text-white"><%= blogFeedData[index].reactions %></span>
+                        <span id="likes" class="text-gray-900 hidden md:block dark:text-white">reactions</span>
                       </a>
                     </div>
                     <div>
                       <a href="#" class="flex items-center ml-2 py-1 px-2 rounded-md focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-white">
-                        <i href="#"  class="fa-regular fa-comment mr-2"></i>
-                        <span id="comment-count" class="mr-2"><%= blogFeedData[index].comments %></span>
-                        <span id="comments" class="hidden md:block">comments</span>
+                        <i href="#"  class="text-gray-900 fa-regular fa-comment mr-2 dark:text-white"></i>
+                        <span id="comment-count" class="text-gray-900 mr-2 dark:text-white"><%= blogFeedData[index].comments %></span>
+                        <span id="comments" class="text-gray-900 hidden md:block dark:text-white">comments</span>
                       </a>
                     </div>
                     <div class="ml-auto">
                       <a href="#" class="flex items-center py-1 px-2 rounded-md focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-white">
-                        <i href="#" class="fa-regular fa-bookmark mr-2"></i>
-                        <span id="save-count" class="mr-2"><%= blogFeedData[index].saves %></span>
-                        <span id="saves" class="hidden md:block">saves</span>
+                        <i href="#" class="text-gray-900 fa-regular fa-bookmark mr-2 dark:text-white"></i>
+                        <span id="save-count" class="text-gray-900 mr-2 dark:text-white"><%= blogFeedData[index].saves %></span>
+                        <span id="saves" class="text-gray-900 hidden md:block dark:text-white">saves</span>
                       </a>
                     </div>
                   </div>

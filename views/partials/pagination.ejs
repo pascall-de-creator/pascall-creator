@@ -10,25 +10,25 @@
         <% if (pageNumber == 1 || pageNumber == null) { %> 
           <li><a href="#"><i></i></a></li>
         <% } else { %>
-          <li><a href="?page=<%= parseInt(pageNumber) - 1 %>"><i class="fa-solid fa-angle-left py-3 px-4 rounded-md mx-2 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 dark:text-white"></i></a></li>
+          <li><a href="?page=<%= parseInt(pageNumber) - 1 %>"><i class="fa-solid fa-angle-left py-3 px-4 rounded-md mx-2 focus:outline-none text-gray-900 focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 dark:text-white"></i></a></li>
         <% } %> 
 
         <% if (pageNumber == 1 || pageNumber == null) { %> 
-          <li><a href="?page=1" class="py-2 px-4 rounded-md mx-2 bg-cyan-500 focus:outline-none focus:bg-cyan-400 hover:bg-cyan-400 dark:text-white">1</a></li>
+          <li><a href="?page=1" class="py-2 px-4  text-gray-900 rounded-md mx-2 bg-cyan-500 focus:outline-none focus:bg-cyan-400 hover:bg-cyan-400 dark:text-white">1</a></li>
         <% } else { %> 
-          <li><a href="?page=1" class="py-2 px-4 rounded-md mx-2 focus:outline-none focus:bg-cyan-400 hover:bg-cyan-400 dark:text-white">1</a></li>
+          <li><a href="?page=1" class="py-2  text-gray-900 px-4 rounded-md mx-2 focus:outline-none focus:bg-cyan-400 hover:bg-cyan-400 dark:text-white">1</a></li>
         <% } %> 
-        <li class="py-2 px-4 rounded-md mx-2 dark:text-white">...</li>
-        <input type="number" name="number" class="bg-white dark:bg-gray-700 dark:text-white" min="1" max="<%= lastpage %>" value="<%= pageNumber %>" onchange="moveTo(this.value)">
-        <li class="py-2 px-4 rounded-md mx-2 dark:text-white">...</li>
+        <li class="py-2 px-4 rounded-md mx-2  text-gray-900 dark:text-white">...</li>
+        <input type="number" name="number" class="bg-gray-300 text-gray-900 dark:bg-gray-700 dark:text-white" min="1" max="<%= lastpage %>" value="<%= pageNumber %>" onchange="moveTo(this.value)">
+        <li class="py-2 px-4 rounded-md mx-2  text-gray-900 dark:text-white">...</li>
         <% if (pageNumber == lastpage ) { %> 
-          <li><a href="?page=<%= lastpage %>" class="py-2 px-4 rounded-md mx-2 bg-cyan-500 focus:outline-none focus:bg-cyan-400 hover:bg-cyan-400 dark:text-white"><%= lastpage %></a></li>
+          <li><a href="?page=<%= lastpage %>" class="py-2 px-4  text-gray-900 rounded-md mx-2 bg-cyan-500 focus:outline-none focus:bg-cyan-400 hover:bg-cyan-400 dark:text-white"><%= lastpage %></a></li>
         <% } else { %> 
-          <li><a href="?page=<%= lastpage %>" class="py-2 px-4 rounded-md mx-2 focus:outline-none focus:bg-cyan-400 hover:bg-cyan-400 dark:text-white"><%= lastpage %></a></li>
+          <li><a href="?page=<%= lastpage %>" class="py-2 px-4  text-gray-900 rounded-md mx-2 focus:outline-none focus:bg-cyan-400 hover:bg-cyan-400 dark:text-white"><%= lastpage %></a></li>
         <% } %> 
 
         <% if (pageNumber <= Object.keys(blogFeedData).length / 12) { %>
-          <li><a href="?page=<%= parseInt(pageNumber) + 1 %>"><i class="fa-solid fa-angle-right py-3 px-4 rounded-md mx-2 focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 dark:text-white"></i></a></li>
+          <li><a href="?page=<%= parseInt(pageNumber) + 1 %>"><i class="fa-solid fa-angle-right py-3 px-4 rounded-md mx-2 focus:outline-none text-gray-900 focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 dark:text-white"></i></a></li>
         <% } %>
     </ul>
   </div>

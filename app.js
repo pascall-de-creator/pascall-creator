@@ -5,7 +5,7 @@ var blogFeedData;
 var topBlogFeedData;
 var newBlogFeedData;
 
-const fetchFeed_all = axios.get('http://localhost:8000/all?_sort="date_published&_order="dec"')
+const fetchFeed_all = axios.get('http://localhost:8000/all?_sort="date_published"&_order="dec"')
   .then(resp => {
     blogFeedData = resp.data
 });
@@ -40,17 +40,20 @@ app.get("/blog", (req, res) => {
     res.render('blog', {title: "The astro blog", path: req.route.path, blogFeedData, newBlogFeedData, topBlogFeedData, pageNumber: req.query.page})
   }
   else if(req.query.page > 1) {
-    res.render('blog', {title: "The astro blog", path: req.route.path, blogFeedData, newBlogFeedData, topBlogFeedData, pageNumber: req.query.page })
+    res.render('blog-page', {title: "blog", path: req.route.path, blogFeedData, newBlogFeedData, topBlogFeedData, pageNumber: req.query.page })
   }
   else{
-    res.render('blog', {title: "The astro blog", path: req.route.path, newBlogFeedData, topBlogFeedData, blogFeedData, pageNumber: 1})
+    res.render('blog', {title: "The astro blog", path: req.route.path, blogFeedData, newBlogFeedData, topBlogFeedData, pageNumber: 1})
   }
-  
 })
 
 app.get("/about", (req, res) => {
   res.render('about', {title: "The astronaut", path: req.route.path})
 })
-//create webpack 404 error page
+//create 404 error page
+app.use((req, res) => {
+  res.status = 404
+  res.render('error', {title: "Page not found", path: path, errorCode: res.status, errorMessage: "Oops..Looks like we are in a different galaxy... can't find this page" })
+})
 
 app.listen(PORT)
