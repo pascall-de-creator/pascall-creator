@@ -1,0 +1,20 @@
+* {
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+  font: poppins;
+}
+
+body {
+  margin: 0;
+  width: 100vw;
+  overflow: hidden;
+}
+
+nav ul a:focus {
+  padding-bottom: 2px;
+  border-bottom-color: cyan;
+  border-bottom-width: 2px;
+  outline: none;
+  border-radius: 0px !important;
+}
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<%- include("./partials/head.ejs") %>
+<body class="bg-gray-100 dark:bg-gray-800">
+  <%- include("./partials/nav.ejs") %>
+  <form action="">
+      <input type="text" name="title">
+      <textarea name="content" id="contentInput" cols="30" rows="10"></textarea>
+      <input type="submit" value="post">
+  </form>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-analytics.js";
+    import { getFirestore, collection, doc, setDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyDgaeSwQjkrQSh4ZQ7LrJJVWJ8ZyibKits",
+        authDomain: "pascall-creator-web.firebaseapp.com",
+        projectId: "pascall-creator-web",
+        storageBucket: "pascall-creator-web.appspot.com",
+        messagingSenderId: "522420559947",
+        appId: "1:522420559947:web:f349a646a2ca9c36d6adce",
+        measurementId: "G-NLCXL4PR37"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app)
+
+    const blogsRef = collection(db, "blogs")
+    
+    await setDoc(doc(blogsRef), {
+        headline: "Lorem ipsum doro amit hokage",
+        content: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam, quas amet suscipit, minus beatae quod ipsam, esse vero dignissimos eaque architecto repudiandae. Sapiente quasi fugiat nemo quibusdam sint, odit cum.",
+        author : "pascall de creator",
+        category: "Learning",
+        date_published: "October 1, 2001 at 12:00:00 AM UTC-7",
+        tags: ["development", "Gaming", "learning"],
+        image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
+        reactions: 12,
+        views: 12,
+        saves: 16,
+    });
+  </script>
+  <%- include("./partials/footer.ejs") %>
+  <%- include("./partials/scripts.ejs") %>
+</body>

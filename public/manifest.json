@@ -1,8 +1,29 @@
 {
-    "start_url": "/",
-    "name": "Pascall De Creator",
-    "display": "standalone",
-    "short_name": "PDeC",
-    "background_color": "#1f2937",
-    "theme_color": "#152030"
+  "name": "Pascall De Creator",
+  "short_name": "PDeC",
+  "author": "Pascal Nkornyui",
+  "description": "Relivant tech leads and useful insights about technology and prigramming on Pascall De Creator Online",
+  "icons": [
+    {
+      "src": "/static/images/icon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/static/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#152030",
+  "background_color": "#1f2937"
 }

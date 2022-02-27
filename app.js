@@ -28,6 +28,7 @@ const PORT = process.env.PORT || 3000
 
 //middleware
 app.use('/static', express.static(path.join(__dirname, 'public')))
+app.use('/', express.static(path.join(__dirname, '/')))
 
 app.use('/dist', express.static(path.join(__dirname, 'dist')))
 
@@ -50,10 +51,18 @@ app.get("/blog", (req, res) => {
 app.get("/about", (req, res) => {
   res.render('about', {title: "The astronaut", path: req.route.path})
 })
+
+app.get("/client-offline-fallback", (req, res) => {
+    res.render('fallback', {title: "offline", path: req.route.path})
+})
+
+app.get("/create", (req, res) => {
+  res.render('create-blog', {title: "Blog editor", path: req.route.path})
+})
 //create 404 error page
 app.use((req, res) => {
   res.status = 404
-  res.render('error', {title: "Page not found", path: path, errorCode: res.status, errorMessage: "Oops..Looks like we are in a different galaxy... can't find this page" })
+  res.render('error', {title: "Page not found", path: path, errorCode: res.status, errorMessage: "Hmm.. looks like we cant find this galaxy... we have to go back to the milkyWay" })
 })
 
 app.listen(PORT)

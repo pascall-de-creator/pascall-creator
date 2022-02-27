@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <%- include("./partials/head.ejs") %>
 <body class="bg-gray-100 dark:bg-gray-800">
   <%- include("./partials/nav.ejs") %>
@@ -16,9 +16,9 @@
                 <p class="w-max text-xs text-gray-900 dark:text-gray-300"><%= blogFeedData[index].date_published %></p>
               </div>
               <div class="tags flex my-2">
-                <a href="/tags/<%= blogFeedData[index].tags[0] %>" class="tag border-2 border-cyan-300 bg-cyan-200 py-1 px-2 rounded-md text-xs mr-1 focus:outline-none focus:border-blue-500"><%= blogFeedData[index].tags[0] %></a>
-                <a href="/tags/<%= blogFeedData[index].tags[1] %>" class="tag border-2 border-red-300 bg-red-200 py-1 px-2 rounded-md text-xs mr-1 focus:outline-none focus:border-blue-500"><%= blogFeedData[index].tags[1] %></a>
-                <a href="/tags/<%= blogFeedData[index].tags[2] %>" class="tag border-2 border-green-300 bg-green-200 py-1 px-2 rounded-md text-xs mr-1 focus:outline-none focus:border-blue-500"><%= blogFeedData[index].tags[2] %></a>
+                <a href="/tags/<%= blogFeedData[index].tags[0] %>" class="tag  bg-blue-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"><%= blogFeedData[index].tags[0] %></a>
+                <a href="/tags/<%= blogFeedData[index].tags[1] %>" class="tag  bg-red-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"><%= blogFeedData[index].tags[1] %></a>
+                <a href="/tags/<%= blogFeedData[index].tags[2] %>" class="tag  bg-green-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"><%= blogFeedData[index].tags[2] %></a>
               </div>
               <a href="<%= blogFeedData[index].link %>" class="mb-3 text-gray-700 sm:text-lg font-semibold leading-normal md:text-2xl w-full hover:text-blue-400 dark:hover:text-blue-400 dark:text-gray-200  focus:outline-none focus:text-blue-400 dark:focus:text-blue-400"><%= blogFeedData[index].headline %></a><br>
               <a href="<%= blogFeedData[index].link %>" class="text-gray-900 text-base dark:text-gray-200"><%= blogFeedData[index].content_1 %></a>
@@ -57,4 +57,5 @@
     <% }  else { %> <% } %>
   <%- include("./partials/pagination.ejs") %>
   <%- include("./partials/footer.ejs") %>
+  <%- include("./partials/scripts.ejs") %>
 </body>

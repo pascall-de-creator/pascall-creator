@@ -1,42 +1,16 @@
 *{
   transition: 0.2s;
-}
-body {
   font: poppins;
 }
-.w-95-screen{ width: 95vw !important; } 
-
+body {
+  margin: 0;
+  width: 100vw;
+  overflow: hidden;
+}
 nav ul a:focus {
     padding-bottom: 2px;
     border-bottom-color: cyan;
     border-bottom-width: 2px;
     outline: none;
     border-radius: 0px!important;
-}
-nav #brand:focus{
-  color: rgb(31, 144, 179);
-  outline: none;
-}
-
-.fa-heart:hover{
-  color: rgb(247, 148, 164);
-  outline: none;
-}
-
-.fa-comment:focus{
-  color: #2fe0ff;
-  outline: none;
-}
-.fa-comment:hover{
-  color: #2fe0ff;
-  outline: none;
-}
-
-.fa-bookmark:focus{
-  color: aqua;
-  outline: none;
-}
-.fa-bookmark:hover{
-  color: rgb(0, 174, 255);
-  outline: none;
 }
