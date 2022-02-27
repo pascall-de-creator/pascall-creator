@@ -59,6 +59,11 @@ app.get("/client-offline-fallback", (req, res) => {
 app.get("/create", (req, res) => {
   res.render('create-blog', {title: "Blog editor", path: req.route.path})
 })
+
+app.get("/manage", (req, res) => {
+  res.render('manage-blogs', {title: "Manage all blogs", path: req.route.path})
+})
+
 //create 404 error page
 app.use((req, res) => {
   res.status = 404

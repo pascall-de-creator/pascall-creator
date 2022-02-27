@@ -2,10 +2,10 @@ const staticCacheName = 'site-static';
 const dynamicCacheName = 'site-dynamic';
 
 const assets = [
-    '/',
-    '/static/javascripts/app.js',
-    '/static/stylesheets/style.css',
-    '/dist/output.css',
+    // '/',
+    // '/static/javascripts/app.js',
+    // '/static/stylesheets/style.css',
+    // '/dist/output.css',
     '/client-offline-fallback'
 ];
 

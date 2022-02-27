@@ -17,4 +17,14 @@ nav ul a:focus {
   outline: none;
   border-radius: 0px !important;
 }
+
+.group .group-content {
+  display: none;
+}
+
+.group:hover .group-content, .group:active .group-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
 /*# sourceMappingURL=style.css.map */

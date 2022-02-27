@@ -14,3 +14,13 @@ nav ul a:focus {
     outline: none;
     border-radius: 0px!important;
 }
+.group {
+  .group-content {
+    display: none;
+  }
+}
+.group:hover, .group:active  {
+  .group-content{
+    display: flex;
+  }
+}
