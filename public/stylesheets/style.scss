@@ -24,3 +24,19 @@ nav ul a:focus {
     display: flex;
   }
 }
+.table {
+  display: flex;
+  flex-direction: column;
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px gray solid;
+    border-left-width: 0px;
+    border-bottom-width: 0px;
+    border-right-width: 0px;
+    padding: 1rem 2rem;
+  }
+}

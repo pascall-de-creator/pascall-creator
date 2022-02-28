@@ -5,7 +5,7 @@ const assets = [
     // '/',
     // '/static/javascripts/app.js',
     // '/static/stylesheets/style.css',
-    // '/dist/output.css',
+    '/dist/output.css',
     '/client-offline-fallback'
 ];
 
