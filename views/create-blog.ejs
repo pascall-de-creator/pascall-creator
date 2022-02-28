@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <%- include("./partials/head.ejs") %>
-<body class="bg-gray-100 dark:bg-gray-800">
+<body class="bg-gray-100 dark:bg-gray-800 overflow-y-scroll" onload="getDraftData()">
   <%- include("./partials/nav.ejs") %>
   <%- include("./partials/Editbar.ejs") %>
   <div class="w-screen flex flex-row">
@@ -15,7 +15,7 @@
             </div>
             <div class="group-content py-3 px-5 flex flex-col">
               <label for="thumbnail" class="text-lg text-gray-900 dark:text-white mb-3">Thumbnail Image:</label>
-              <input name="image" id="thumbnail" type="file" class="focus:outline-none text-gray-900 dark:text-white">
+              <input name="image" onchange="changeThumbnail()" id="thumbnail" type="file" class="focus:outline-none text-gray-900 dark:text-white">
               <label for="thumbnail" class="text-sm text-gray-900 dark:text-white my-2">must be at least 200 x 500</label>
 
               <label for="thumbnail" class="text-lg text-gray-900 dark:text-white my-4">Generate Image:</label>

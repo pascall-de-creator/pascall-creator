@@ -33,6 +33,27 @@ const firebaseConfig = {
 
 const app = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore(app)
+var storage = firebase.storage();
+
+function changeThumbnail(){
+    const ref = storage.ref();
+
+    const file = document.getElementById('thumbnail').files[0]
+
+    const name = new Date() + '-' + file.name
+    
+    const metadata = {
+        contentType: file.type
+    }
+
+    const task = ref.child(name).put(file, metadata)
+
+    task
+    .then(snapshot => snapshot.ref.getDownloadURL())
+    .then(url => {
+        console.log(url)
+    })
+}
 
 function postBlog(){
     const queryString = window.location.search;
@@ -46,7 +67,7 @@ function postBlog(){
     tagsInput = document.getElementById('tagsInput').value.split(',')
     const publishDateTime = Date.now()
 
-    if(blogId == "" && blogCollection == ""){
+    if(blogId == null && blogCollection == null){
         if(contentInput == "" || titleInput == ""){
             db.collection("DraftBlogs").doc().set({
                 headline: titleInput,
@@ -58,13 +79,12 @@ function postBlog(){
                 views: 0,
             })
             .then(
-                window.location.href = '/'
+                // window.location.href = '/'
             )
             .catch((error) => {
                 console.error("Error writing document: ", error);
             });   
-        } 
-        else {
+        } else {
             db.collection("blogs").doc().set({
                 headline: titleInput,
                 content: contentInput,
@@ -75,14 +95,13 @@ function postBlog(){
                 views: 0,
             })
             .then(
-                window.location.href = '/'
+                // window.location.href = '/'
             )
             .catch((error) => {
                 console.error("Error writing document: ", error);
             });   
         } 
-    }
-    else {
+    } else {
         db.collection(blogCollection).doc(blogId).update({
             headline: titleInput,
             content: contentInput,
@@ -93,18 +112,51 @@ function postBlog(){
             views: 0,
         })
         .then(
-            window.location.href = '/'
+            // window.location.href = '/'
         )
         .catch((error) => {
             console.error("Error updating document: ", error);
         });   
     }
 }
+
+function getDraftData() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const blogId = urlParams.get('id')
+    const blogCollection = urlParams.get('collection')
+
+    titleInput = document.getElementById('titleInput')
+    contentInput = document.getElementById('contentInput')
+    categoryInput = document.getElementById('categoryInput')
+    tagsInput = document.getElementById('tagsInput')
+    
+    if(blogId != null || blogCollection != null){
+        var docRef = db.collection(blogCollection).doc(blogId);
+
+        docRef.get().then((doc) => {
+            if (doc.exists) {
+                titleInput.value = doc.data().headline
+                contentInput.value = doc.data().content
+                categoryInput.value = doc.data().category
+                tagsInput.value = doc.data().tags.toString()
+            } else {
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+    } else {
+    }
+}
+
 function createTable(doc, collection) {
     let table = document.getElementsByClassName('table')[0]
     let row = document.createElement('div')
     let headline = document.createElement('p')
+    let status = document.createElement('p')
     let insight = document.createElement('div')
+    let info = document.createElement('div')
     let viewIcon = document.createElement('i')
     let views = document.createElement('span')
     let editIcon = document.createElement('a')
@@ -112,7 +164,33 @@ function createTable(doc, collection) {
 
     row.setAttribute('data-id', doc.id)
     row.setAttribute('data-collection', collection)
+
     headline.innerText = doc.data().headline
+
+    if(collection == "blogs"){
+        status.innerText = "Posted"
+        status.classList.add("text-sm");
+        status.classList.add("text-green-900");
+        status.classList.add("bg-green-200");
+        status.classList.add("border-green-500");
+        status.classList.add("border-2");
+        status.classList.add("px-2");
+        status.classList.add("mx-2");
+        status.classList.add("py-1");
+        status.classList.add("rounded-full");
+    } else {
+        status.innerText = "Draft"
+        status.classList.add("text-sm");
+        status.classList.add("text-red-900");
+        status.classList.add("bg-red-200");
+        status.classList.add("border-red-500");
+        status.classList.add("border-2");
+        status.classList.add("px-2");
+        status.classList.add("py-1");
+        status.classList.add("mx-2");
+        status.classList.add("rounded-full");
+    }
+
     views.innerText = doc.data().views
 
     viewIcon.classList.add("fa-solid");
@@ -158,14 +236,20 @@ function createTable(doc, collection) {
         let id = e.target.parentElement.parentElement.getAttribute("data-id")
         let coll = e.target.parentElement.parentElement.getAttribute("data-collection")
         db.collection(coll).doc(id).delete().then(
-            window.location.href = '/manage'
+            // window.location.href = '/manage'
         )
     })
     insight.appendChild(deleteIcon)
 
     headline.classList.add("text-gray-900");
     headline.classList.add("dark:text-gray-200");
-    row.appendChild(headline)
+
+    info.classList.add("flex");
+    info.classList.add("items-center");
+    info.appendChild(headline)
+    info.appendChild(status)
+
+    row.appendChild(info)
     row.appendChild(insight)
 
     row.classList.add("row");
