@@ -1,53 +1,56 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <%- include("./partials/head.ejs") %>
-<body class="bg-gray-100 dark:bg-gray-800 overflow-y-scroll" onload="getDraftData()">
+<body class="bg-gray-100 dark:bg-gray-800" onload="getDraftData()">
   <%- include("./partials/nav.ejs") %>
   <%- include("./partials/Editbar.ejs") %>
-  <div class="w-screen flex flex-row">
-    <div class="h-screen lg:w-1/4 bg-gray-200 dark:bg-gray-900">
-      <ul>
-        <li>
-          <div class="group">
-            <div id="group-head" class="text-md py-3 px-3 bg-gray-300 dark:bg-gray-700 flex flex-row justify-between hover:bg-gray-500 dark:hover:bg-gray-700">
-              <p class="text-gray-900 dark:text-white">Images</p>
-              <i class="text-gray-900 dark:text-white">></i>
-            </div>
-            <div class="group-content py-3 px-5 flex flex-col">
-              <label for="thumbnail" class="text-lg text-gray-900 dark:text-white mb-3">Thumbnail Image:</label>
-              <input name="image" onchange="changeThumbnail()" id="thumbnail" type="file" class="focus:outline-none text-gray-900 dark:text-white">
-              <label for="thumbnail" class="text-sm text-gray-900 dark:text-white my-2">must be at least 200 x 500</label>
-
-              <label for="thumbnail" class="text-lg text-gray-900 dark:text-white my-4">Generate Image:</label>
-              <input name="image" id="thumbnail" type="file" class="focus:outline-none text-gray-900 dark:text-white">
-              <input id="imageGenerator" type="text" class="focus:outline-none my-1 rounded-sm text-gray-900">
-            </div>
+  <div id="sidebar" class="fixed top-0 flex items-center">
+    <div id="sidebarAccordion" class="accordion h-screen flex-col hidden w-screen overflow-y-scroll sm:w-80 bg-gray-200 dark:bg-gray-900">
+      <button onclick="openAccordion('blogComponents')" class="w-full group-head text-md py-3 px-3 bg-gray-300 dark:bg-gray-700 flex flex-row items-center justify-between hover:bg-gray-500 dark:hover:bg-gray-700">
+        <div class="flex items-center">
+          <i class="text-gray-900 mx-2 dark:text-white fa-solid fa-vector-square"></i>
+          <p class="text-gray-900 dark:text-white">Components</p>
         </div>
-        </li>
-        <li>
-          <div class="group">
-            <div id="group-head" class="text-md py-3 px-3 bg-gray-300 dark:bg-gray-700 flex flex-row justify-between hover:bg-gray-500 dark:hover:bg-gray-700">
-              <p class="text-gray-900 dark:text-white">Edit</p>
-              <i class="text-gray-900 dark:text-white">></i>
-            </div>
-            <div class="group-content py-3 px-5 flex flex-col">
-              <label for="thumbnail" class="text-lg text-gray-900 dark:text-white mb-3">Blog Category:</label>
-              <input name="category" id="categoryInput" type="text" class="focus:outline-none text-gray-900">
-
-              <label for="thumbnail" class="text-lg text-gray-900 dark:text-white my-4">Blog tags:</label>
-              <input name="tags" id="tagsInput" type="text" class="focus:outline-none text-gray-900">
-            </div>
+      </button>
+      <div id="blogComponents" class="hidden group-content py-3 px-5 flex-col">
+        <label for="fileInput" class="text-lg text-gray-900 dark:text-white my-4">Generate File URL:</label>
+        <input name="file" id="fileInput" type="file" onchange="uploadFile()" class="focus:outline-none text-gray-900 dark:text-white">
+        <input placeholder="file Url" id="fileurl" type="text" class="focus:outline-none my-1 rounded-sm text-gray-900">
+        
+        <hr class="text-gray-500 my-4">
+        
+        <label for="linkOutput" class="text-lg text-gray-900 dark:text-white my-4">Generate Link:</label>
+        <input placeholder="eg: eat food, code, sleep" id="linkContentEl" type="text" class="focus:outline-none my-1 rounded-sm text-gray-900">
+        <input placeholder="To url:" id="linkToEl" type="text" class="focus:outline-none my-1 rounded-sm text-gray-900">
+        <select id="navigateOptions">
+          <option value="">navigate</option>
+          <option value="_blank">New Tab</option>
+        </select>
+        <button class="btn bg-gray-800 p-2 text-white w-max my-2" onclick="generateLink()">Generate</button>
+        <input placeholder="Generated Component" id="linkOutput" type="text" class="focus:outline-none my-1 rounded-sm text-gray-900">
+      </div>
+      <button onclick="openAccordion('blogEditOptions')" class="w-full group-head text-md py-3 px-3 bg-gray-300 dark:bg-gray-700 flex flex-row items-center justify-between hover:bg-gray-500 dark:hover:bg-gray-700">
+        <div class="flex items-center">
+          <i class="text-gray-900 mx-2 dark:text-white fa-solid fa-pen"></i>
+          <p class="text-gray-900 dark:text-white">Edit Blog</p>
         </div>
-        </li>
-      </ul>
-    </div>
-    <div class="w-screen lg:w-3/4">
-      <div class="flex flex-col">
-          <input type="text" id="titleInput" name="headline" class="bg-gray-100 dark:bg-gray-700 dark:text-gray-200">
-          <textarea name="content" id="contentInput" cols="30" rows="10" class="h-screen bg-gray-100 dark:bg-gray-700 dark:text-gray-200"></textarea>
-          <button class="btn p-5 bg-cyan-700 rounded-full fixed w-4 h-4 flex items-center justify-center bottom-2 right-2 shadow-lg" onclick="postBlog()"><i class="fa-solid fa-paper-plane text-gray-200 w-4 h-4"></i></button>
+      </button>
+      <div id="blogEditOptions" class="hidden group-content py-3 px-5 flex-col">
+        <label for="categoryInput" class="text-lg text-gray-900 dark:text-white mb-3">Blog Category:</label>
+        <input placeholder="eg: Learning" name="category" id="categoryInput" type="text" class="focus:outline-none text-gray-900">
+        <label for="tagsInput" class="text-lg text-gray-900 dark:text-white my-4">Blog tags:</label>
+        <input placeholder="eg: food,Programming,IT" name="tags" id="tagsInput" type="text" class="focus:outline-none text-gray-900">
       </div>
     </div>
-  </div>>
+    <button class="h-8 w-8 bg-cyan-700 fixed bottom-0 left-0 sm:static" onclick="toggleSideBar()">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+    <div class="flex w-screen">
+      <textarea placeholder="Blog Content" name="content" id="contentInput" cols="30" rows="10" class="h-screen w-full bg-gray-100 dark:bg-gray-700 dark:text-gray-200"></textarea>
+      <button class="btn p-5 bg-cyan-700 rounded-full fixed w-4 h-4 flex items-center justify-center bottom-2 right-2 shadow-lg" onclick="postBlog()"><i class="fa-solid fa-paper-plane text-gray-200 w-4 h-4"></i></button>
+      <div id="previewPanel" class="hidden w-1/2 bg-white">
+      </div>
+  </div>
   <%- include("./partials/scripts.ejs") %>
 </body>

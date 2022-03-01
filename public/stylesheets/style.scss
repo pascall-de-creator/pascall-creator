@@ -1,3 +1,15 @@
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
 *{
   transition: 0.2s;
   font: poppins;
@@ -14,16 +26,6 @@ nav ul a:focus {
     outline: none;
     border-radius: 0px!important;
 }
-.group {
-  .group-content {
-    display: none;
-  }
-}
-.group:hover, .group:active  {
-  .group-content{
-    display: flex;
-  }
-}
 .table {
   display: flex;
   flex-direction: column;
@@ -39,4 +41,7 @@ nav ul a:focus {
     border-right-width: 0px;
     padding: 1rem 2rem;
   }
+}
+.accordion {
+  background-color: rgba(206, 203, 203, 0);
 }

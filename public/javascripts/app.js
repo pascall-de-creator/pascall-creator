@@ -19,8 +19,22 @@ if('serviceWorker' in navigator){
   .then((register) => console.log('registeres', register))
   .catch((error) => console.log('not registered', error))
 }
-
-
+function openAccordion(id){
+    var arccontent = document.getElementById(id)
+    if(arccontent.style.display == "flex"){
+        arccontent.style.display = "none"
+    } else {
+        arccontent.style.display = "flex"
+    }
+}
+function toggleSideBar() {
+    let sidebar = document.getElementById('sidebarAccordion')
+    if(sidebar.style.display == "flex"){
+        sidebar.style.display = "none"
+    } else {
+        sidebar.style.display = "flex"
+    }
+}
 const firebaseConfig = {
     apiKey: "AIzaSyDgaeSwQjkrQSh4ZQ7LrJJVWJ8ZyibKits",
     authDomain: "pascall-creator-web.firebaseapp.com",
@@ -30,15 +44,14 @@ const firebaseConfig = {
     appId: "1:522420559947:web:f349a646a2ca9c36d6adce",
     measurementId: "G-NLCXL4PR37"
 };
-
 const app = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore(app)
 var storage = firebase.storage();
 
-function changeThumbnail(){
+function uploadFile(){
     const ref = storage.ref();
 
-    const file = document.getElementById('thumbnail').files[0]
+    const file = document.getElementById('fileInput').files[0]
 
     const name = new Date() + '-' + file.name
     
@@ -46,12 +59,15 @@ function changeThumbnail(){
         contentType: file.type
     }
 
-    const task = ref.child(name).put(file, metadata)
-
-    task
+    const task = ref.child(name)
+    .put(file, metadata)
     .then(snapshot => snapshot.ref.getDownloadURL())
     .then(url => {
-        console.log(url)
+        if( url != undefined || url != "" || url != null){
+            var fileUrlElement = document.getElementById('fileurl')
+            fileUrlElement.value = url
+            console.log(url)
+        }
     })
 }
 
@@ -119,7 +135,53 @@ function postBlog(){
         });   
     }
 }
+function saveAsDraft(){
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const blogId = urlParams.get('id')
+    const blogCollection = urlParams.get('collection')
+    
+    titleInput = document.getElementById('titleInput').value
+    contentInput = document.getElementById('contentInput').value
+    categoryInput = document.getElementById('categoryInput').value
+    tagsInput = document.getElementById('tagsInput').value.split(',')
+    const publishDateTime = Date.now()
 
+    if(blogId == null && blogCollection == null){
+        db.collection("DraftBlogs").doc().set({
+            headline: titleInput,
+            content: contentInput,
+            category: categoryInput,
+            date_published: new Date(publishDateTime),
+            tags: tagsInput,
+            image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
+            views: 0,
+        })
+        .then(
+            // window.location.href = '/'
+        )
+        .catch((error) => {
+            console.error("Error writing document: ", error);
+        });
+    } 
+    else {
+        db.collection(blogCollection).doc(blogId).update({
+            headline: titleInput,
+            content: contentInput,
+            category: categoryInput,
+            date_published: new Date(publishDateTime),
+            tags: tagsInput,
+            image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
+            views: 0,
+        })
+        .then(
+            // window.location.href = '/'
+        )
+        .catch((error) => {
+            console.error("Error updating document: ", error);
+        });   
+    }
+}
 function getDraftData() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -266,4 +328,27 @@ function getAllBlogsTable() {
             createTable(doc, "DraftBlogs")
         });
     });
+}
+function generateLink(){
+    let content = document.getElementById('linkContentEl').value
+    let to = document.getElementById('linkToEl').value
+    let navtype = document.getElementById('navigateOptions').value
+    let outputElement = document.getElementById('linkOutput')
+
+    outputElement.value = `<a href="${to}" target="${navtype}" rel="noopener noreferrer">${content}</a>`
+}
+function previewBlog(){
+    let contentInput = document.getElementById('contentInput')
+    let previewPanel = document.getElementById('previewPanel')
+
+    if(contentInput.style.width == "50%"){
+        previewPanel.style.display = "none"
+        contentInput.style.width = "100%"
+    } else {
+        previewPanel.style.display = "block"
+        contentInput.style.width = "50%"
+    }
+    // let xmlString = document.getElementById('contentInput').value
+    // var doc = new DOMParser().parseFromString(xmlString, "text/html");
+    // previewPanel.innerHTML = doc
 }

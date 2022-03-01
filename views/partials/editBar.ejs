@@ -1,1 +1,18 @@
-<nav class="bg-cyan-700 h-10 w-screen"></nav>
+<nav class="bg-cyan-700 h-10 w-screen px-2">
+    <ul class="flex items-center h-full justify-between">
+        <li class="flex items-center">
+            <p class="mx-2">Blog Headline:</p>
+           <input placeholder="" type="text" id="titleInput" name="headline" class="h-8 mx-2 rounded-md bg-gray-100 dark:bg-gray-700 dark:text-gray-200">
+        </li>
+        <li class="flex items-center">
+            <a  onclick="saveAsDraft()" class="btn bg-cyan-700 flex items-center p-1 hover:bg-blue-500 rounded-md  focus:outline-none active:bg-cyan-600 hover:bg-cyan-600" href="#">
+                <i class="px-1 fa-regular fa-floppy-disk"></i>
+                <p class="hidden md:block px-1">Save as draft</p>
+            </a>
+            <a  onclick="previewBlog()" class="btn bg-cyan-700 flex items-center p-1 hover:bg-blue-500 rounded-md  focus:outline-none active:bg-cyan-600 hover:bg-cyan-600" href="#">
+                <i class="px-1 fa-regular fa-eye"></i>
+                <p class="hidden md:block px-1">Preview</p>
+            </a>
+        </li>
+    </ul>
+</nav>
