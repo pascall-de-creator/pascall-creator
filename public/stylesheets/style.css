@@ -1,3 +1,55 @@
+#previewPanel #blogContent, #contentPanel #blogContent {
+  font-size: 1rem;
+}
+
+#previewPanel h1, #contentPanel h1 {
+  font-size: 2rem;
+}
+
+#previewPanel h2, #contentPanel h2 {
+  font-size: 1.5rem;
+}
+
+#previewPanel h3, #contentPanel h3 {
+  font-size: 1.17rem;
+}
+
+#previewPanel h4, #contentPanel h4 {
+  font-size: 1rem;
+}
+
+#previewPanel h5, #contentPanel h5 {
+  font-size: 0.83rem;
+}
+
+#previewPanel h6, #contentPanel h6 {
+  font-size: 0.67rem;
+}
+
+#previewPanel p, #contentPanel p {
+  font-size: 0.67rem;
+}
+
+#previewPanel a, #contentPanel a {
+  color: #15ba88;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 * {
   -webkit-transition: 0.2s;
   transition: 0.2s;
@@ -16,16 +68,6 @@ nav ul a:focus {
   border-bottom-width: 2px;
   outline: none;
   border-radius: 0px !important;
-}
-
-.group .group-content {
-  display: none;
-}
-
-.group:hover .group-content, .group:active .group-content {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
 }
 
 .table {
@@ -57,5 +99,9 @@ nav ul a:focus {
   border-bottom-width: 0px;
   border-right-width: 0px;
   padding: 1rem 2rem;
+}
+
+.accordion {
+  background-color: rgba(206, 203, 203, 0);
 }
 /*# sourceMappingURL=style.css.map */

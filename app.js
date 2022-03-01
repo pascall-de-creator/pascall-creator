@@ -64,6 +64,10 @@ app.get("/manage", (req, res) => {
   res.render('manage-blogs', {title: "Manage all blogs", path: req.route.path})
 })
 
+app.get("/read", (req, res) => {
+  res.render('readBlog', {title: "Read astro blog", path: req.route.path})
+})
+
 //create 404 error page
 app.use((req, res) => {
   res.status = 404

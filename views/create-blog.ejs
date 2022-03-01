@@ -47,7 +47,7 @@
     </button>
   </div>
     <div class="flex w-screen">
-      <textarea placeholder="Blog Content" name="content" id="contentInput" cols="30" rows="10" class="h-screen w-full bg-gray-100 dark:bg-gray-700 dark:text-gray-200"></textarea>
+      <textarea onkeypress="updatePreview()" placeholder="Blog Content" name="content" id="contentInput" cols="30" rows="10" class="h-screen w-full bg-gray-100 dark:bg-gray-700 dark:text-gray-200"></textarea>
       <button class="btn p-5 bg-cyan-700 rounded-full fixed w-4 h-4 flex items-center justify-center bottom-2 right-2 shadow-lg" onclick="postBlog()"><i class="fa-solid fa-paper-plane text-gray-200 w-4 h-4"></i></button>
       <div id="previewPanel" class="hidden w-1/2 bg-white">
       </div>

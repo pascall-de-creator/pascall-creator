@@ -337,7 +337,7 @@ function generateLink(){
 
     outputElement.value = `<a href="${to}" target="${navtype}" rel="noopener noreferrer">${content}</a>`
 }
-function previewBlog(){
+function tooglePreviewPanel(){
     let contentInput = document.getElementById('contentInput')
     let previewPanel = document.getElementById('previewPanel')
 
@@ -348,7 +348,54 @@ function previewBlog(){
         previewPanel.style.display = "block"
         contentInput.style.width = "50%"
     }
-    // let xmlString = document.getElementById('contentInput').value
-    // var doc = new DOMParser().parseFromString(xmlString, "text/html");
-    // previewPanel.innerHTML = doc
+}
+function updatePreview(){
+    let contentInput = document.getElementById('contentInput')
+    let previewPanel = document.getElementById('previewPanel')
+
+    let parser = new DOMParser();
+    const doc = parser.parseFromString(contentInput.value, 'text/html');
+    previewPanel.innerHTML = doc
+}
+function renderBlog(){
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const blogId = urlParams.get('id')
+
+    console.log(blogId)
+    if(blogId == null && blogCollection == null){
+        console.log("nothing here")
+    } 
+    else {
+        var docRef = db.collection("blogs").doc(blogId);
+        docRef.get().then((doc) => {
+            if (doc.exists) {
+                let dbThumbnail = doc.data().image
+                let dbHeadline = doc.data().headline
+                let dbContent = doc.data().content
+                let dbDate = doc.data().date_published.toDate().toDateString()
+                let dbCategory = doc.data().category
+                let dbTagList = doc.data().tags
+
+                var blogThumbnail = document.getElementById("blogThumbnail").setAttribute("src", dbThumbnail)
+                var blogHeadline = document.getElementById("blogHeadline").innerText = dbHeadline
+                var blogContent = document.getElementById("blogContent").innerText = dbContent
+                var blogDate = document.getElementById("date").innerText = dbDate
+                var blogCategory = document.getElementById("category").innerText = dbCategory
+                var blogTagList = document.getElementById("blogTagList")
+
+                dbTagList.forEach(tag => {
+                    let tagEl = document.createElement('span')
+                    tagEl.classList.add('tagBadge')
+                    tagEl.innerText = `#${tag}  `
+                    blogTagList.appendChild(tagEl)
+                })
+            } 
+            else {
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+    }
 }
