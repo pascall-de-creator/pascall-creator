@@ -70,7 +70,6 @@ function uploadFile(){
         }
     })
 }
-
 function postBlog(){
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -376,6 +375,8 @@ function renderBlog(){
                 let dbCategory = doc.data().category
                 let dbTagList = doc.data().tags
 
+                let Uviews = doc.data().views += 1
+
                 var blogThumbnail = document.getElementById("blogThumbnail").setAttribute("src", dbThumbnail)
                 var blogHeadline = document.getElementById("blogHeadline").innerText = dbHeadline
                 var blogContent = document.getElementById("blogContent").innerText = dbContent
@@ -383,6 +384,15 @@ function renderBlog(){
                 var blogCategory = document.getElementById("category").innerText = dbCategory
                 var blogTagList = document.getElementById("blogTagList")
 
+                db.collection("blogs").doc(doc.id).update({
+                    views: Uviews,
+                })
+                .then(
+                    // window.location.href = '/'
+                )
+                .catch((error) => {
+                    console.error("Error writing document: ", error);
+                }); 
                 dbTagList.forEach(tag => {
                     let tagEl = document.createElement('span')
                     tagEl.classList.add('tagBadge')
@@ -410,6 +420,7 @@ function renderTopBlog(doc) {
 
     image.setAttribute('src', doc.data().image)
     blogCategory.innerHTML = `${doc.data().category} -•- `
+    blogCategory.href = `/search?category=${doc.data().category}`
     blogDate.innerText = doc.data().date_published.toDate().toDateString()
 
     if(doc.data().tags[0] != undefined){
