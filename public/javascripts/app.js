@@ -409,7 +409,7 @@ function renderTopBlog(doc) {
     let blogContent = document.getElementsByClassName('top-blogContent')[0]
 
     image.setAttribute('src', doc.data().image)
-    blogCategory.innerHTML = `${doc.data().category} • `
+    blogCategory.innerHTML = `${doc.data().category} -•- `
     blogDate.innerText = doc.data().date_published.toDate().toDateString()
 
     if(doc.data().tags[0] != undefined){
@@ -422,14 +422,14 @@ function renderTopBlog(doc) {
     if(doc.data().tags[1] != undefined){
         badge2.innerText = `#${doc.data().tags[1]}`
         badge2.style.display = "block"
-        badge1.href = `/search?tag=${doc.data().tags[1]}`
+        badge2.href = `/search?tag=${doc.data().tags[1]}`
     } else {
         badge2.style.display = "none"
     }
     if(doc.data().tags[2] != undefined){
         badge3.innerText = `#${doc.data().tags[2]}`
         badge3.style.display = "block"
-        badge1.href = `/search?tag=${doc.data().tags[2]}`
+        badge3.href = `/search?tag=${doc.data().tags[2]}`
     } else {
         badge3.style.display = "none"
     }
