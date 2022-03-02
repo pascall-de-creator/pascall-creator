@@ -17,7 +17,9 @@ the website is beign buildt with
 I am currently working on the blog posting and fetcheing and a few touches to the design of the website
 
 ### snapshots
-<img width="55%" height="auto" src="https://i.postimg.cc/Vr7j5prx/localhost-3000-blog.png" alt="localhost-3000-blog"/>
-<img width="55%" height="auto" src="https://i.postimg.cc/vxc5nh5c/localhost-3000-blog-1.png" alt="localhost-3000-blog-1"/>
-<img width="55%" height="auto" src="https://i.postimg.cc/hJ18RfSP/localhost-3000-read-id-BIAHpf-Ib-WSCk-MWd2s9-W8.png" alt="localhost-3000-read-id-BIAHpf-Ib-WSCk-MWd2s9-W8"/>
-<img width="55%" height="auto" src="https://i.postimg.cc/yg6m1sdh/localhost-3000-read-id-BIAHpf-Ib-WSCk-MWd2s9-W8-1.png" alt="localhost-3000-read-id-BIAHpf-Ib-WSCk-MWd2s9-W8-1"/>
+<div width="100%" style="display: flex;" align="center">
+  <img width="45%" height="auto" src="https://i.postimg.cc/bYLFVstX/Screenshot-2022-03-01-232734.png" alt="localhost-3000-blog"/>
+  <img width="45%" height="auto" src="https://i.postimg.cc/TYwNzfVK/Screenshot-2022-03-01-232837.png" alt="localhost-3000-blog-1"/>
+  <img width="45%" height="auto" src="https://i.postimg.cc/Znf7WMSY/Screenshot-2022-03-01-232936.png" alt="localhost-3000-read-id-BIAHpf-Ib-WSCk-MWd2s9-W8"/>
+  <img width="45%" height="auto" src="https://i.postimg.cc/HnWvsCFP/Screenshot-2022-03-01-233005.png" alt="localhost-3000-read-id-BIAHpf-Ib-WSCk-MWd2s9-W8-1"/>
+</div>
