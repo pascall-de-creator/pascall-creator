@@ -17,7 +17,7 @@ the website is beign buildt with
 I am currently working on the blog posting and fetcheing and a few touches to the design of the website
 
 ### snapshots
-<a href="https://postimg.cc/Vr7j5prx" target="_blank"><img src="https://i.postimg.cc/Vr7j5prx/localhost-3000-blog.png" alt="localhost-3000-blog"/></a><br/><br/>
-<a href="https://postimg.cc/vxc5nh5c" target="_blank"><img src="https://i.postimg.cc/vxc5nh5c/localhost-3000-blog-1.png" alt="localhost-3000-blog-1"/></a><br/><br/>
-<a href="https://postimg.cc/hJ18RfSP" target="_blank"><img src="https://i.postimg.cc/hJ18RfSP/localhost-3000-read-id-BIAHpf-Ib-WSCk-MWd2s9-W8.png" alt="localhost-3000-read-id-BIAHpf-Ib-WSCk-MWd2s9-W8"/></a><br/><br/>
-<a href="https://postimg.cc/yg6m1sdh" target="_blank"><img src="https://i.postimg.cc/yg6m1sdh/localhost-3000-read-id-BIAHpf-Ib-WSCk-MWd2s9-W8-1.png" alt="localhost-3000-read-id-BIAHpf-Ib-WSCk-MWd2s9-W8-1"/></a><br/><br/>
+<img width="55%" height="auto" src="https://i.postimg.cc/Vr7j5prx/localhost-3000-blog.png" alt="localhost-3000-blog"/>
+<img width="55%" height="auto" src="https://i.postimg.cc/vxc5nh5c/localhost-3000-blog-1.png" alt="localhost-3000-blog-1"/>
+<img width="55%" height="auto" src="https://i.postimg.cc/hJ18RfSP/localhost-3000-read-id-BIAHpf-Ib-WSCk-MWd2s9-W8.png" alt="localhost-3000-read-id-BIAHpf-Ib-WSCk-MWd2s9-W8"/>
+<img width="55%" height="auto" src="https://i.postimg.cc/yg6m1sdh/localhost-3000-read-id-BIAHpf-Ib-WSCk-MWd2s9-W8-1.png" alt="localhost-3000-read-id-BIAHpf-Ib-WSCk-MWd2s9-W8-1"/>
