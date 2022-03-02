@@ -104,4 +104,12 @@ nav ul a:focus {
 .accordion {
   background-color: rgba(206, 203, 203, 0);
 }
+
+.truncate-8 {
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 /*# sourceMappingURL=style.css.map */

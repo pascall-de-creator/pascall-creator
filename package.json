@@ -9,7 +9,6 @@
     "launch-app": "npx nodemon ./app.js"
   },
   "dependencies": {
-    "axios": "^0.25.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "firebase": "^9.6.7",
@@ -22,6 +21,7 @@
     "node-fetch": "^3.2.0"
   },
   "devDependencies": {
+    "axios": "^0.26.0",
     "ejs": "^3.1.6",
     "express": "^4.17.3",
     "nodemon": "^2.0.15",

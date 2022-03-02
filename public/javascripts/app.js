@@ -211,7 +211,6 @@ function getDraftData() {
     } else {
     }
 }
-
 function createTable(doc, collection) {
     let table = document.getElementsByClassName('table')[0]
     let row = document.createElement('div')
@@ -398,4 +397,57 @@ function renderBlog(){
             console.log("Error getting document:", error);
         });
     }
+}
+function renderTopBlog(doc) {
+    let image = document.getElementsByClassName('top-blogImage')[0]
+    let blogCategory = document.getElementsByClassName('top-blogCategory')[0]
+    let blogDate = document.getElementsByClassName('top-blogDate')[0]
+    let badge1 = document.getElementsByClassName('tag-badge')[0]
+    let badge2 = document.getElementsByClassName('tag-badge')[1]
+    let badge3 = document.getElementsByClassName('tag-badge')[2]
+    let blogHeadline = document.getElementsByClassName('top-blogHeadline')[0]
+    let blogContent = document.getElementsByClassName('top-blogContent')[0]
+
+    image.setAttribute('src', doc.data().image)
+    blogCategory.innerHTML = `${doc.data().category} • `
+    blogDate.innerText = doc.data().date_published.toDate().toDateString()
+
+    if(doc.data().tags[0] != undefined){
+        badge1.innerText = `#${doc.data().tags[0]}`
+        badge1.style.display = "block"
+        badge1.href = `/search?tag=${doc.data().tags[0]}`
+    } else {
+        badge1.style.display = "none"
+    }
+    if(doc.data().tags[1] != undefined){
+        badge2.innerText = `#${doc.data().tags[1]}`
+        badge2.style.display = "block"
+        badge1.href = `/search?tag=${doc.data().tags[1]}`
+    } else {
+        badge2.style.display = "none"
+    }
+    if(doc.data().tags[2] != undefined){
+        badge3.innerText = `#${doc.data().tags[2]}`
+        badge3.style.display = "block"
+        badge1.href = `/search?tag=${doc.data().tags[2]}`
+    } else {
+        badge3.style.display = "none"
+    }
+
+    blogHeadline.innerText = doc.data().headline
+    blogHeadline.href = `/read?id=${doc.id}`
+    blogContent.innerText = doc.data().content
+    blogContent.href = `/read?id=${doc.id}`
+
+}
+function fetchBlogs() {
+    let topBlogsList = []
+
+    db.collection("blogs").orderBy('views').get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            topBlogsList.push(doc)
+            renderTopBlog(topBlogsList[0])
+        })
+    })
+
 }

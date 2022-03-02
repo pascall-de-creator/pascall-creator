@@ -1,140 +1,34 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <%- include("./partials/head.ejs") %>
-<body class="bg-gray-100 dark:bg-gray-800 overflow-y-scroll">
+<body class="bg-gray-100 dark:bg-gray-800 overflow-y-scroll" onload="fetchBlogs()">
   <%- include("./partials/nav.ejs") %>
   <div id="main" class="container mx-auto sm:p-0 md:p-2 lg:p-2">
-    <% if(Object.keys(blogFeedData).length != 0){ %> 
-      <div class="mx-auto flex flex-col lg:flex-row focus:hover:shadow-lg focus:outline-none focus:border-2 focus:border-dashed  focus:border-cyan-300">
-        <img width="auto" height="auto" class="object-cover h-96 md:w-100% rounded-md sm:w-100%" src="<%= topBlogFeedData[0].image %>" alt="<%= topBlogFeedData[0].image_alt %>"> 
-        <div class="ml-5 mt-5 flex flex-col justify-between md:ml-0 lg:ml-5 p-1">
-          <div class="flex flex-col">
+
+    <!-- trending blog post -->
+    <div class="top-blogCard mx-auto flex flex-col lg:flex-row">
+      <img width="auto" height="auto" class="top-blogImage object-cover h-96 md:w-100% rounded-md sm:w-100%" src="https://picsum.photos/200/300"> 
+      <div class="ml-5 mt-5 flex flex-col justify-between md:ml-0 lg:ml-5 p-1">
+        <div class="flex flex-col">
             <div class="flex mb-3 items-end">
-              <a href="/category/<%= topBlogFeedData[0].category %>" class="text-gray-900 text-base w-max mr-1 focus:text-blue-600 focus:outline-none dark:text-white"><%= topBlogFeedData[0].category %> • </a>
-              <p class="w-max text-gray-900 dark:text-gray-300"><%= topBlogFeedData[0].date_published %></p>
+                <a href="" class="top-blogCategory w-max text-gray-900 dark:text-gray-300"></a>
+                <p class="top-blogDate text-gray-900 text-base w-max mr-1 focus:text-blue-600 focus:outline-none dark:text-white"></p>
             </div>
-            <div class="tags flex my-2 w-max">
-              <a href="/tags/<%= topBlogFeedData[0].tags[0] %>" class="tag  bg-blue-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"><%= topBlogFeedData[0].tags[0] %></a>
-              <a href="/tags/<%= topBlogFeedData[0].tags[1] %>" class="tag  bg-red-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"><%= topBlogFeedData[0].tags[1] %></a>
-              <a href="/tags/<%= topBlogFeedData[0].tags[2] %>" class="tag  bg-green-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"><%= topBlogFeedData[0].tags[2] %></a>
+            <div class="top-tagsList flex my-2 w-max">
+                <a href="" class="tag-badge bg-gray-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"></a>
+                <a href="" class="tag-badge bg-gray-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"></a>
+                <a href="" class="tag-badge bg-gray-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"></a>
             </div>
             <div>
-              <a href="<%= topBlogFeedData[0].link %>" class="mr-1 mb-3 text-gray-700 sm:text-xl font-semibold leading-normal md:text-2xl 2xl:text-4xl dark:text-gray-300 focus:outline-none"><%= topBlogFeedData[0].headline %></a>
-              <a href="<%= topBlogFeedData[0].link %>"><p class="text-gray-900 text-base dark:text-gray-200 focus:outline-none"><%= topBlogFeedData[0].content_1 %></p></a>
-              <a href="<%= topBlogFeedData[0].link %>"><p class="text-gray-900 text-base hidden 2xl:block dark:text-gray-200 focus:outline-none"><%= topBlogFeedData[0].content_2 %></p></a>
+                <a href="" class="top-blogHeadline mr-1 mb-3 text-gray-700 sm:text-xl font-semibold leading-normal md:text-2xl 2xl:text-4xl dark:text-gray-300 focus:outline-none"></a>
+                <a href="" class="truncate-8 text-clip overflow-hidden top-blogContent text-gray-900 text-base dark:text-gray-200 focus:outline-none"></a>
             </div>
-            <a href="/user/<%= topBlogFeedData[0].author %>" class="text-gray-900  w-max mt-5 py-1 px-2 rounded-md focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-white">@ <%= topBlogFeedData[0].author %></a>
-          </div>
-          <div class="flex mt-5 lg:justify-between">
-            <a href="#" class="flex items-center py-1 px-2 rounded-md focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-white">
-              <i class="text-gray-900  fa-regular fa-heart mr-2 dark:text-white"></i>
-              <span id="like-count" class="text-gray-900  mr-2 dark:text-white"><%= topBlogFeedData[0].reactions %></span>
-            </a>
-            <a href="#" class="flex items-center ml-2 py-1 px-2 rounded-md focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-white">
-              <i class="text-gray-900  fa-regular fa-comment mr-2 dark:text-white"></i>
-              <span id="comment-count" class="text-gray-900  mr-2 dark:text-white"><%= topBlogFeedData[0].comments %></span>
-            </a>
-            <a href="#" class="ml-auto flex items-center py-1 px-2 rounded-md focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-white">
-              <i class="text-gray-900  fa-regular fa-bookmark mr-2 dark:text-white"></i>
-              <span id="save-count" class="text-gray-900  mr-2 dark:text-white"><%= topBlogFeedData[0].saves %></span>
-            </a>
-          </div>
         </div>
       </div>
-      <h1 class="text-2xl mt-10 font-semibold ml-5 border-t-2 pt-3 md:border-t-0 border-t-gray-500 text-gray-900 dark:text-white">Latest Posts.</h1>
-      <div class="mt-10 grid grid-rows-4 grid-flow-col gap-4 justify-items-center md:grid-rows-2 md:grid-cols-2 lg:grid-rows-1 lg:grid-cols-4">
-        <% for (let index = 0; index < 4; index++) { %>
-          <div class="justify-between card flex flex-col my-1 max-w-sm p-2 bg-gray-100 border-2 border-gray-200 rounded-md dark:bg-gray-800 dark:border-gray-700">
-            <div class="flex flex-col">
-              <img width="auto" height="auto" class="max-h-60 object-fill w-auto mx-auto md:w-auto rounded-md sm:w-100% md:w-100% md:h-auto" src="<%= newBlogFeedData[index].image %>" alt="<%= newBlogFeedData[index].image_alt %>">
-              <div class="mt-5 flex-col">
-                <div class="flex mb-3 items-end">
-                  <p class="text-sm w-max mr-1 text-gray-900  dark:text-white"><%= newBlogFeedData[index].category %> • </p>
-                  <p class="w-max text-xs text-gray-900 dark:text-gray-300"><%= newBlogFeedData[index].date_published %></p>
-                </div>
-                <div class="tags flex my-2">
-                  <a href="/tags/<%= newBlogFeedData[index].tags[0] %>" class="tag bg-blue-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"><%= newBlogFeedData[index].tags[0] %></a>
-                  <a href="/tags/<%= newBlogFeedData[index].tags[1] %>" class="tag  bg-red-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"><%= newBlogFeedData[index].tags[1] %></a>
-                  <a href="/tags/<%= newBlogFeedData[index].tags[2] %>" class="tag  bg-green-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"><%= newBlogFeedData[index].tags[2] %></a>
-                </div>
-                <a href="<%= newBlogFeedData[index].link %>" class="focus:outline-none focus:text-blue-400 dark:focus:text-blue-400 mr-1 mb-3 text-gray-700 sm:text-lg font-semibold leading-normal md:text-2xl hover:text-blue-400 dark:text-gray-300"><%= newBlogFeedData[index].headline %></a><br>
-                <a href="<%= newBlogFeedData[index].link %>" class="focus:outline-none focus:text-blue-400 dark:focus:text-blue-400 text-gray-900 text-base hover:text-blue-400 dark:text-gray-200" href="#"><%= newBlogFeedData[index].content_1 %></a>
-                <br>
-              </div>
-            </div>
+    </div>
 
-            <div class="flex mt-5">
-              <a href="#" class="flex items-center py-1 px-2 rounded-md focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-white">
-                <i href="#"  class="text-gray-900 fa-regular fa-heart mr-2 dark:text-white"></i>
-                <span id="like-count" class="text-gray-900 mr-2 dark:text-white"><%= newBlogFeedData[index].reactions %></span>
-              </a>
-              <a href="#" class="flex items-center ml-2 py-1 px-2 rounded-md focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-white">
-                <i href="#"  class="text-gray-900 fa-regular fa-comment mr-2 dark:text-white"></i>
-                <span id="comment-count" class="text-gray-900 mr-2 dark:text-white"><%= newBlogFeedData[index].comments %></span>
-              </a>
-              <a href="#" class="ml-auto flex items-center py-1 px-2 rounded-md focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-white">
-                <i href="#" class="text-gray-900 fa-regular fa-bookmark mr-2 dark:text-white"></i>
-                <span id="save-count" class="text-gray-900 mr-2 dark:text-white"><%= newBlogFeedData[index].saves %></span>
-              </a>
-            </div>
-          </div>
-        <% }; %>
-      </div>
-      <h1 class="text-2xl mt-10 font-semibold ml-5 border-t-2 pt-3 md:border-t-0 border-t-gray-500 text-gray-900 dark:text-white">Other Posts.</h1>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-2 grid-flow-row mt-10 lg:grid-cols-2"> 
-        <% var page_num = parseInt(pageNumber)-1 %>
-        <% var page_num = page_num*12 %>
-        <% if(Object.keys(blogFeedData).length != 0){ %> 
-          <% for (let index = page_num; index < page_num + 12; index++) { %>
-            <% if(index < Object.keys(blogFeedData).length) { %> 
-              <div class="card flex flex-col mb-1 bg-gray-100 p-3 rounded-md border-2 border-gray-200 sm:max-w-full dark:bg-gray-800 dark:border-gray-700">
-                <div class="flex-col">
-                  <div class="flex mb-3 items-end">
-                    <p class="text-sm w-max mr-1 text-gray-900  dark:text-white"><%= blogFeedData[index].category %> • </p>
-                    <p class="w-max text-xs text-gray-900 dark:text-gray-300"><%= blogFeedData[index].date_published %></p>
-                  </div>
-                  <div class="tags flex my-2">
-                    <a href="/tags/<%= blogFeedData[index].tags[0] %>" class="tag  bg-blue-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"><%= blogFeedData[index].tags[0] %></a>
-                    <a href="/tags/<%= blogFeedData[index].tags[1] %>" class="tag  bg-red-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"><%= blogFeedData[index].tags[1] %></a>
-                    <a href="/tags/<%= blogFeedData[index].tags[2] %>" class="tag  bg-green-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"><%= blogFeedData[index].tags[2] %></a>
-                  </div>
-                  <a href="<%= blogFeedData[index].link %>" class="mb-3 text-gray-700 sm:text-lg font-semibold leading-normal md:text-2xl w-full hover:text-blue-400 dark:hover:text-blue-400 dark:text-gray-200  focus:outline-none focus:text-blue-400 dark:focus:text-blue-400"><%= blogFeedData[index].headline %></a><br>
-                  <a href="<%= blogFeedData[index].link %>" class="text-gray-900 text-base dark:text-gray-200"><%= blogFeedData[index].content_1 %></a>
-                  <div class="flex mt-5">
-                    <div>
-                      <a href="#" class="flex items-center py-1 px-2 rounded-md focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-white">
-                        <i href="#"  class="text-gray-900 fa-regular fa-heart mr-2 dark:text-white"></i>
-                        <span id="like-count" class="text-gray-900 mr-2 dark:text-white"><%= blogFeedData[index].reactions %></span>
-                        <span id="likes" class="text-gray-900 hidden md:block dark:text-white">reactions</span>
-                      </a>
-                    </div>
-                    <div>
-                      <a href="#" class="flex items-center ml-2 py-1 px-2 rounded-md focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-white">
-                        <i href="#"  class="text-gray-900 fa-regular fa-comment mr-2 dark:text-white"></i>
-                        <span id="comment-count" class="text-gray-900 mr-2 dark:text-white"><%= blogFeedData[index].comments %></span>
-                        <span id="comments" class="text-gray-900 hidden md:block dark:text-white">comments</span>
-                      </a>
-                    </div>
-                    <div class="ml-auto">
-                      <a href="#" class="flex items-center py-1 px-2 rounded-md focus:outline-none focus:bg-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 dark:focus:bg-gray-700 dark:text-white">
-                        <i href="#" class="text-gray-900 fa-regular fa-bookmark mr-2 dark:text-white"></i>
-                        <span id="save-count" class="text-gray-900 mr-2 dark:text-white"><%= blogFeedData[index].saves %></span>
-                        <span id="saves" class="text-gray-900 hidden md:block dark:text-white">saves</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <% } %>        
-          <% } %> 
-        <% } %>
-      </div>
-    <% } else { %>
-      <img src="/static/images/no_data.svg" class="mx-auto h-96" alt="nothing here">
-      <h1 class="mx-auto text-2xl w-max my-5 dark:text-white">Nothing over here</h1>
-    <% } %> 
-
-  <%- include("./partials/pagination.ejs") %>
+  </div>
+  <%#- include("./partials/pagination.ejs") %>
   <%- include("./partials/footer.ejs") %>
   <%- include("./partials/scripts.ejs") %>
 </body>
