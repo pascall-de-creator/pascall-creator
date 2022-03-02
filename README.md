@@ -6,7 +6,7 @@ it will host my community and products on the web and will be accessible to all 
 ## My stack
 the website is beign buildt with
 - Node.js - express ( Backend )
-- EJS ( View Template ) * i might migrate to React later
+- EJS ( View Template ) * might migrate to React later
 - Tailwindcss ( Utility style )
 - SASS ( Stylesheet )
 - Vallina js | ES6 ( Script )
@@ -17,7 +17,7 @@ the website is beign buildt with
 I am currently working on the blog posting and fetcheing and a few touches to the design of the website
 
 ### snapshots
-<img widt="55px" height="auto" src="https://postimg.cc/Vr7j5prx">
-<img widt="55px" height="auto" src="https://postimg.cc/vxc5nh5c">
-<img widt="55px" height="auto" src="https://postimg.cc/hJ18RfSP">
-<img widt="55px" height="auto" src="https://postimg.cc/yg6m1sdh">
+<a href="https://postimg.cc/Vr7j5prx" target="_blank"><img src="https://i.postimg.cc/Vr7j5prx/localhost-3000-blog.png" alt="localhost-3000-blog"/></a><br/><br/>
+<a href="https://postimg.cc/vxc5nh5c" target="_blank"><img src="https://i.postimg.cc/vxc5nh5c/localhost-3000-blog-1.png" alt="localhost-3000-blog-1"/></a><br/><br/>
+<a href="https://postimg.cc/hJ18RfSP" target="_blank"><img src="https://i.postimg.cc/hJ18RfSP/localhost-3000-read-id-BIAHpf-Ib-WSCk-MWd2s9-W8.png" alt="localhost-3000-read-id-BIAHpf-Ib-WSCk-MWd2s9-W8"/></a><br/><br/>
+<a href="https://postimg.cc/yg6m1sdh" target="_blank"><img src="https://i.postimg.cc/yg6m1sdh/localhost-3000-read-id-BIAHpf-Ib-WSCk-MWd2s9-W8-1.png" alt="localhost-3000-read-id-BIAHpf-Ib-WSCk-MWd2s9-W8-1"/></a><br/><br/>
