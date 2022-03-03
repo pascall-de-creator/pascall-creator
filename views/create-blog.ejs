@@ -13,6 +13,13 @@
         </div>
       </button>
       <div id="blogComponents" class="hidden group-content py-3 px-5 flex-col">
+        
+        <label for="fileInput" class="text-lg text-gray-900 dark:text-white my-4">Thumbnail:</label>
+        <input name="file" id="fileInput" type="file" accept="image/png, image/gif, image/jpeg" onchange="setThumbnail()" class="focus:outline-none text-gray-900 dark:text-white">
+        <img width="auto" height="auto" id="thumbnailPreview" src="/static/images/thumbHolder.png" alt="thumbnail" class="h-auto w-full mx-auto my-2">
+
+        <hr class="text-gray-500 my-4">
+
         <label for="fileInput" class="text-lg text-gray-900 dark:text-white my-4">Generate File URL:</label>
         <input name="file" id="fileInput" type="file" onchange="uploadFile()" class="focus:outline-none text-gray-900 dark:text-white">
         <input placeholder="file Url" id="fileurl" type="text" class="focus:outline-none my-1 rounded-sm text-gray-900">

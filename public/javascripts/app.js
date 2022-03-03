@@ -9,11 +9,9 @@ const toogleTheme = () => {
         pageref.classList.add('dark');
     }
 }
-
-function flash(message, status = "error", duration){
+function flash(message, status = "info", duration){
     alert(message)
 }
-
 if('serviceWorker' in navigator){
   navigator.serviceWorker.register('/sw.js')
   .then((register) => console.log('registeres', register))
@@ -47,7 +45,6 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore(app)
 var storage = firebase.storage();
-
 function uploadFile(){
     const ref = storage.ref();
 
@@ -70,6 +67,25 @@ function uploadFile(){
         }
     })
 }
+function setThumbnail(){
+    let = thumbnailPreview = document.getElementById('thumbnailPreview')
+
+    const ref = storage.ref();
+    const file = document.getElementById('fileInput').files[0]
+    const name = new Date() + '-' + file.name
+    const metadata = {
+        contentType: file.type
+    }
+
+    const task = ref.child(name)
+    .put(file, metadata)
+    .then(snapshot => snapshot.ref.getDownloadURL())
+    .then(url => {
+        if( url != undefined || url != "" || url != null){
+            thumbnailPreview.setAttribute('src', url)
+        }
+    })
+}
 function postBlog(){
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -80,17 +96,18 @@ function postBlog(){
     contentInput = document.getElementById('contentInput').value
     categoryInput = document.getElementById('categoryInput').value
     tagsInput = document.getElementById('tagsInput').value.split(',')
+    thumbnailPreview = document.getElementById('thumbnailPreview').getAttribute('src')
     const publishDateTime = Date.now()
 
-    if(blogId == null && blogCollection == null){
+    if(blogId == null && blogCollection == null || thumbnailPreview == null){
         if(contentInput == "" || titleInput == ""){
             db.collection("DraftBlogs").doc().set({
-                headline: titleInput,
-                content: contentInput,
-                category: categoryInput,
+                headline: titleInput || "",
+                content: contentInput || "",
+                category: categoryInput || "",
                 date_published: new Date(publishDateTime),
-                tags: tagsInput,
-                image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
+                tags: tagsInput || "",
+                image: thumbnailPreview || "",
                 views: 0,
             })
             .then(
@@ -101,12 +118,12 @@ function postBlog(){
             });   
         } else {
             db.collection("blogs").doc().set({
-                headline: titleInput,
-                content: contentInput,
-                category: categoryInput,
+                headline: titleInput || "",
+                content: contentInput || "",
+                category: categoryInput || "",
                 date_published: new Date(publishDateTime),
-                tags: tagsInput,
-                image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
+                tags: tagsInput || "",
+                image: thumbnailPreview || "",
                 views: 0,
             })
             .then(
@@ -123,7 +140,7 @@ function postBlog(){
             category: categoryInput,
             date_published: new Date(publishDateTime),
             tags: tagsInput,
-            image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
+            image: thumbnailPreview || "",
             views: 0,
         })
         .then(
@@ -144,16 +161,17 @@ function saveAsDraft(){
     contentInput = document.getElementById('contentInput').value
     categoryInput = document.getElementById('categoryInput').value
     tagsInput = document.getElementById('tagsInput').value.split(',')
+    thumbnailPreview = document.getElementById('thumbnailPreview').getAttribute('src')
     const publishDateTime = Date.now()
 
     if(blogId == null && blogCollection == null){
         db.collection("DraftBlogs").doc().set({
-            headline: titleInput,
-            content: contentInput,
-            category: categoryInput,
+            headline: titleInput || "",
+            content: contentInput || "",
+            category: categoryInput || "",
             date_published: new Date(publishDateTime),
-            tags: tagsInput,
-            image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
+            tags: tagsInput || "",
+            image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80" || "",
             views: 0,
         })
         .then(
@@ -165,12 +183,12 @@ function saveAsDraft(){
     } 
     else {
         db.collection(blogCollection).doc(blogId).update({
-            headline: titleInput,
-            content: contentInput,
-            category: categoryInput,
+            headline: titleInput || "",
+            content: contentInput || "",
+            category: categoryInput || "",
             date_published: new Date(publishDateTime),
-            tags: tagsInput,
-            image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80",
+            tags: tagsInput || "",
+            image: thumbnailPreview || "",
             views: 0,
         })
         .then(
@@ -191,6 +209,7 @@ function getDraftData() {
     contentInput = document.getElementById('contentInput')
     categoryInput = document.getElementById('categoryInput')
     tagsInput = document.getElementById('tagsInput')
+    thumbnailPreview = document.getElementById('thumbnailPreview')
     
     if(blogId != null || blogCollection != null){
         var docRef = db.collection(blogCollection).doc(blogId);
@@ -201,6 +220,7 @@ function getDraftData() {
                 contentInput.value = doc.data().content
                 categoryInput.value = doc.data().category
                 tagsInput.value = doc.data().tags.toString()
+                thumbnailPreview.setAttribute('src', doc.data().image)
             } else {
                 console.log("No such document!");
             }
@@ -412,9 +432,9 @@ function renderTopBlog(doc) {
     let image = document.getElementsByClassName('top-blogImage')[0]
     let blogCategory = document.getElementsByClassName('top-blogCategory')[0]
     let blogDate = document.getElementsByClassName('top-blogDate')[0]
-    let badge1 = document.getElementsByClassName('tag-badge')[0]
-    let badge2 = document.getElementsByClassName('tag-badge')[1]
-    let badge3 = document.getElementsByClassName('tag-badge')[2]
+    let badge1 = document.getElementsByClassName('top-tag-badge')[0]
+    let badge2 = document.getElementsByClassName('top-tag-badge')[1]
+    let badge3 = document.getElementsByClassName('top-tag-badge')[2]
     let blogHeadline = document.getElementsByClassName('top-blogHeadline')[0]
     let blogContent = document.getElementsByClassName('top-blogContent')[0]
 
@@ -451,14 +471,115 @@ function renderTopBlog(doc) {
     blogContent.href = `/read?id=${doc.id}`
 
 }
-function fetchBlogs() {
-    let topBlogsList = []
+function renderLatestBlogs(doc) {
+    for (let latestBlogEl = 0; latestBlogEl < 4; latestBlogEl++) {
+        if(doc[latestBlogEl] != undefined){
+            let image = document.getElementsByClassName('latest-blogImage')[latestBlogEl]
+            let blogCategory = document.getElementsByClassName('latest-blogCategory')[latestBlogEl]
+            let blogDate = document.getElementsByClassName('latest-blogDate')[latestBlogEl]
+            let badge1 = document.getElementsByClassName('latest-tag-badge')[latestBlogEl * 3]
+            let badge2 = document.getElementsByClassName('latest-tag-badge')[latestBlogEl * 3 + 1]
+            let badge3 = document.getElementsByClassName('latest-tag-badge')[latestBlogEl * 3 + 2]
+            let blogHeadline = document.getElementsByClassName('latest-blogHeadline')[latestBlogEl]
+            let blogContent = document.getElementsByClassName('latest-blogContent')[latestBlogEl]
 
+            image.setAttribute('src', doc[latestBlogEl].data().image)
+            blogCategory.innerText = `${doc[latestBlogEl].data().category} -•- `
+            blogDate.innerText = doc[latestBlogEl].data().date_published.toDate().toDateString()
+
+            if(doc[latestBlogEl].data().tags[0] != undefined){
+                badge1.innerText = `#${doc[latestBlogEl].data().tags[0]}`
+                badge1.style.display = "block"
+                badge1.href = `/search?tag=${doc[latestBlogEl].data().tags[0]}`
+            } else {
+                badge1.style.display = "none"
+            }
+            if(doc[latestBlogEl].data().tags[1] != undefined){
+                badge2.innerText = `#${doc[latestBlogEl].data().tags[1]}`
+                badge2.style.display = "block"
+                badge2.href = `/search?tag=${doc[latestBlogEl].data().tags[1]}`
+            } else {
+                badge2.style.display = "none"
+            }
+            if(doc[latestBlogEl].data().tags[2] != undefined){
+                badge3.innerText = `#${doc[latestBlogEl].data().tags[2]}`
+                badge3.style.display = "block"
+                badge3.href = `/search?tag=${doc[latestBlogEl].data().tags[2]}`
+            } else {
+                badge3.style.display = "none"
+            }
+
+            blogHeadline.innerText = doc[latestBlogEl].data().headline
+            blogHeadline.href = `/read?id=${doc[latestBlogEl].id}`
+            blogContent.innerText = doc[latestBlogEl].data().content
+            blogContent.href = `/read?id=${doc[latestBlogEl].id}`
+        }
+    }
+}
+function fetchAllBlogs() {
+    fetchTopBlogs()
+    fetchLatestBlogs()
+    fetchOtherBlogs()
+}
+function fetchTopBlogs(){
+    let topBlogsList = []
     db.collection("blogs").orderBy('views').get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             topBlogsList.push(doc)
-            renderTopBlog(topBlogsList[0])
+            renderTopBlog(topBlogsList[topBlogsList.length - 1])
         })
     })
+}
+function fetchLatestBlogs(){
+    let topBlogsList = []
+    db.collection("blogs").orderBy('date_published').get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            topBlogsList.push(doc)
+            renderLatestBlogs(topBlogsList)
+        })
+    })
+}
+function fetchOtherBlogs(){
+    let topBlogsList = []
+    db.collection("blogs").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            topBlogsList.push(doc)
+            renderOtherBlogs(topBlogsList)
+        })
+    })
+}
+function renderOtherBlogs(doc){
+    let othersGrid = document.getElementById('othersGrid')
+    
+    for (let index = 0; index < doc.length; index++) {
+        
+        let image = document.getElementsByClassName('latest-blogImage')[index]
+        let blogCategory = document.getElementsByClassName('latest-blogCategory')[index]
+        let blogDate = document.getElementsByClassName('latest-blogDate')[index]
+        let badge1 = document.getElementsByClassName('latest-tag-badge')[index * 3]
+        let badge2 = document.getElementsByClassName('latest-tag-badge')[index * 3 + 1]
+        let badge3 = document.getElementsByClassName('latest-tag-badge')[index * 3 + 2]
+        let blogHeadline = document.getElementsByClassName('latest-blogHeadline')[index]
+        let blogContent = document.getElementsByClassName('latest-blogContent')[index]
 
+        var render = 
+        `
+        <div class="card flex flex-col mb-1 bg-gray-100 p-3 rounded-md border-2 border-gray-200 sm:max-w-full dark:bg-gray-800 dark:border-gray-700">
+            <div class="flex-col">
+              <div class="flex mb-3 items-end">
+                <p class="text-sm w-max mr-1 text-gray-900  dark:text-white">${doc[index].data().category} -•- </p>
+                <p class="w-max text-xs text-gray-900 dark:text-gray-300">${doc[index].data().date_published.toDate().toDateString()}</p>
+              </div>
+              <div class="tags flex my-2">
+                <a href="/search?tags=${doc[index].id}" class="tag  bg-blue-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500">#${doc[index].data().tags[0] || "info"}</a>
+                <a href="/search?tags=${doc[index].id}" class="tag  bg-red-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500">#${doc[index].data().tags[1] || "update"}</a>
+                <a href="/search?tags=${doc[index].id}" class="tag  bg-green-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500">#${doc[index].data().tags[2] || "blog"}</a>
+              </div>
+              <a href="${doc[index].id}" class="truncate-2 mb-3 text-gray-700 sm:text-lg font-semibold leading-normal md:text-2xl w-full hover:text-blue-400 dark:hover:text-blue-400 dark:text-gray-200  focus:outline-none focus:text-blue-400 dark:focus:text-blue-400">${doc[index].data().headline}</a>
+              <a href="${doc[index].id}" class="truncate-3 text-gray-900 text-base dark:text-gray-200">${doc[index].data().content}</a></a>
+            </div>
+          </div>
+        `
+        othersGrid.innerHTML += render      
+    }
 }

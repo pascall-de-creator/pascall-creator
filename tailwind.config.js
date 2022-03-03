@@ -12,9 +12,3 @@ module.exports = {
   },
   plugins: [],
 }
-
-.truncate-overflow {
-  --max-lines: 5;
-  max-height: calc(var(--lh) * var(--max-lines));
-  overflow: hidden;
-}
