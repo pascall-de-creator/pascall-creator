@@ -1,9 +1,5 @@
 const express = require('express');
 const path = require('path');
-const axios = require('axios');
-var blogFeedData;
-var topBlogFeedData;
-var newBlogFeedData;
 
 var app = express();
 const PORT = process.env.PORT || 3000
@@ -16,7 +12,6 @@ app.use('/dist', express.static(path.join(__dirname, 'dist')))
 app.get("/", (req, res) => {
   res.render('index', {title: "Space station", path: req.route.path})
 })
-
 app.get("/blog", (req, res) => {
   if(req.query.page == 1){
     res.render('blog', {title: "The astro blog", path: req.route.path, pageNumber: req.query.page})
@@ -28,7 +23,6 @@ app.get("/blog", (req, res) => {
     res.render('blog', {title: "The astro blog", path: req.route.path, pageNumber: 1})
   }
 })
-
 app.get("/about", (req, res) => {
   res.render('about', {title: "The astronaut", path: req.route.path})
 })

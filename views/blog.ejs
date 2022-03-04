@@ -3,27 +3,23 @@
 <%- include("./partials/head.ejs") %>
 <body class="bg-gray-100 dark:bg-gray-800 overflow-y-scroll" onload="fetchAllBlogs()">
   <%- include("./partials/nav.ejs") %>
-  <div id="main" class="container mx-auto sm:p-0 md:p-2 lg:p-2">
+  <div id="main" class="flex flex-col container mx-auto sm:p-0 md:p-2 lg:p-2">
     <!-- trending blog post -->
-    <div class="top-blogCard mx-auto flex flex-col lg:flex-row">
-      <img width="auto" height="auto" class="top-blogImage object-cover h-96 md:w-100% rounded-md sm:w-100%" src="/static/images/thumbHolder.png"> 
-      <div class="ml-5 mt-5 flex flex-col justify-between md:ml-0 lg:ml-5 p-1">
-        <div class="flex flex-col">
-            <div class="flex mb-3 items-end">
-                <a href="" class="mx-1 top-blogCategory w-max text-gray-900 dark:text-gray-300"></a>
-                <p class="top-blogDate text-gray-900 text-base w-max mr-1 focus:text-blue-600 focus:outline-none dark:text-white"></p>
-            </div>
-            <div class="top-tagsList flex my-2 w-max">
-                <a href="" class="top-tag-badge bg-gray-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"></a>
-                <a href="" class="top-tag-badge bg-gray-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"></a>
-                <a href="" class="top-tag-badge bg-gray-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"></a>
-            </div>
-            <div>
-                <a href="" class="truncate-3 top-blogHeadline mr-1 mb-3 text-gray-700 sm:text-xl font-semibold leading-normal md:text-xl dark:text-gray-300 focus:outline-none"></a>
-                <a href="" class="truncate-8 my-1 text-clip overflow-hidden top-blogContent text-gray-900 text-base dark:text-gray-200 focus:outline-none"></a>
-            </div>
+    <div class="w-full top-blogCard mx-auto flex flex-col lg:flex-row">
+      <img width="auto" height="auto" class="top-blogImage object-cover h-96 lg:w-7/12 rounded-md w-100%" src="/static/images/thumbHolder.png"> 
+        <div class="ml-3 flex flex-col">
+          <div class="flex mb-3 items-end">
+              <a href="" class="mx-1 top-blogCategory w-max text-gray-900 dark:text-gray-300"></a>
+              <p class="top-blogDate text-gray-900 text-base w-max mr-1 focus:text-blue-600 focus:outline-none dark:text-white"></p>
+          </div>
+          <div class="top-tagsList flex my-2 w-max">
+              <a href="" class="top-tag-badge bg-gray-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"></a>
+              <a href="" class="top-tag-badge bg-gray-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"></a>
+              <a href="" class="top-tag-badge bg-gray-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"></a>
+          </div>
+            <a href="" class="truncate-3 top-blogHeadline mr-1 mb-3 text-gray-700 sm:text-xl font-semibold leading-normal md:text-xl dark:text-gray-300 focus:outline-none"></a>
+            <a href="" class="truncate-8 my-1 text-clip overflow-hidden top-blogContent text-gray-900 text-base dark:text-gray-200 focus:outline-none"></a>
         </div>
-      </div>
     </div>
 
     <h1 class="text-2xl mt-10 font-semibold ml-5 border-t-2 pt-3 md:border-t-0 border-t-gray-500 text-gray-900 dark:text-white">Latest Posts.</h1>
@@ -112,6 +108,7 @@
     <div id="othersGrid" class="grid grid-cols-1 md:grid-cols-2 gap-2 grid-flow-row mt-10 lg:grid-cols-2"> 
       
     </div>
+    <a id="contentLoader" onclick="fetchOtherBlogs()" data-limit="2" data-end="0" class="text-gray-900 dark:text-white cursor-pointer btn mx-auto my-5 p-3 border-2 border-cyan-700 rounded-md">Load more content</a>
   </div>
   <%#- include("./partials/pagination.ejs") %>
   <%- include("./partials/footer.ejs") %>

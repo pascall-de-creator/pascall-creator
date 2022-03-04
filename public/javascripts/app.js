@@ -399,7 +399,7 @@ function renderBlog(){
 
                 var blogThumbnail = document.getElementById("blogThumbnail").setAttribute("src", dbThumbnail)
                 var blogHeadline = document.getElementById("blogHeadline").innerText = dbHeadline
-                var blogContent = document.getElementById("blogContent").innerText = dbContent
+                var blogContent = document.getElementById("blogContent").innerHTML = dbContent
                 var blogDate = document.getElementById("date").innerText = dbDate
                 var blogCategory = document.getElementById("category").innerText = dbCategory
                 var blogTagList = document.getElementById("blogTagList")
@@ -532,54 +532,65 @@ function fetchTopBlogs(){
 }
 function fetchLatestBlogs(){
     let topBlogsList = []
+
     db.collection("blogs").orderBy('date_published').get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             topBlogsList.push(doc)
-            renderLatestBlogs(topBlogsList)
         })
-    })
-}
-function fetchOtherBlogs(){
-    let topBlogsList = []
-    db.collection("blogs").get().then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-            topBlogsList.push(doc)
-            renderOtherBlogs(topBlogsList)
-        })
+        console.log(querySnapshot)
+        renderLatestBlogs(topBlogsList.reverse())
     })
 }
 function renderOtherBlogs(doc){
     let othersGrid = document.getElementById('othersGrid')
     
-    for (let index = 0; index < doc.length; index++) {
-        
-        let image = document.getElementsByClassName('latest-blogImage')[index]
-        let blogCategory = document.getElementsByClassName('latest-blogCategory')[index]
-        let blogDate = document.getElementsByClassName('latest-blogDate')[index]
-        let badge1 = document.getElementsByClassName('latest-tag-badge')[index * 3]
-        let badge2 = document.getElementsByClassName('latest-tag-badge')[index * 3 + 1]
-        let badge3 = document.getElementsByClassName('latest-tag-badge')[index * 3 + 2]
-        let blogHeadline = document.getElementsByClassName('latest-blogHeadline')[index]
-        let blogContent = document.getElementsByClassName('latest-blogContent')[index]
+    let image = document.getElementsByClassName('latest-blogImage')
+    let blogCategory = document.getElementsByClassName('latest-blogCategory')
+    let blogDate = document.getElementsByClassName('latest-blogDate')
+    let badge1 = document.getElementsByClassName('latest-tag-badge')[0]
+    let badge2 = document.getElementsByClassName('latest-tag-badge')[1]
+    let badge3 = document.getElementsByClassName('latest-tag-badge')[2]
+    let blogHeadline = document.getElementsByClassName('latest-blogHeadline')
+    let blogContent = document.getElementsByClassName('latest-blogContent')
 
-        var render = 
-        `
-        <div class="card flex flex-col mb-1 bg-gray-100 p-3 rounded-md border-2 border-gray-200 sm:max-w-full dark:bg-gray-800 dark:border-gray-700">
-            <div class="flex-col">
-              <div class="flex mb-3 items-end">
-                <p class="text-sm w-max mr-1 text-gray-900  dark:text-white">${doc[index].data().category} -•- </p>
-                <p class="w-max text-xs text-gray-900 dark:text-gray-300">${doc[index].data().date_published.toDate().toDateString()}</p>
-              </div>
-              <div class="tags flex my-2">
-                <a href="/search?tags=${doc[index].id}" class="tag  bg-blue-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500">#${doc[index].data().tags[0] || "info"}</a>
-                <a href="/search?tags=${doc[index].id}" class="tag  bg-red-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500">#${doc[index].data().tags[1] || "update"}</a>
-                <a href="/search?tags=${doc[index].id}" class="tag  bg-green-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500">#${doc[index].data().tags[2] || "blog"}</a>
-              </div>
-              <a href="${doc[index].id}" class="truncate-2 mb-3 text-gray-700 sm:text-lg font-semibold leading-normal md:text-2xl w-full hover:text-blue-400 dark:hover:text-blue-400 dark:text-gray-200  focus:outline-none focus:text-blue-400 dark:focus:text-blue-400">${doc[index].data().headline}</a>
-              <a href="${doc[index].id}" class="truncate-3 text-gray-900 text-base dark:text-gray-200">${doc[index].data().content}</a></a>
+    var render = 
+    `
+    <div class="card flex flex-col mb-1 bg-gray-100 p-3 rounded-md border-2 border-gray-200 sm:max-w-full dark:bg-gray-800 dark:border-gray-700">
+        <div class="flex-col">
+            <div class="flex mb-3 items-end">
+            <p class="text-sm w-max mr-1 text-gray-900  dark:text-white">${doc.data().category} -•- </p>
+            <p class="w-max text-xs text-gray-900 dark:text-gray-300">${doc.data().date_published.toDate().toDateString()}</p>
             </div>
-          </div>
-        `
-        othersGrid.innerHTML += render      
-    }
+            <div class="tags flex my-2">
+            <a href="/search?tags=${doc.data().tags[0]}" class="tag  bg-blue-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500">#${doc.data().tags[0] || "info"}</a>
+            <a href="/search?tags=${doc.data().tags[1]}" class="tag  bg-red-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500">#${doc.data().tags[1] || "update"}</a>
+            <a href="/search?tags=${doc.data().tags[2]}" class="tag  bg-green-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500">#${doc.data().tags[2] || "blog"}</a>
+            </div>
+            <a href="${doc.id}" class="truncate-2 mb-3 text-gray-700 sm:text-lg font-semibold leading-normal md:text-2xl w-full hover:text-blue-400 dark:hover:text-blue-400 dark:text-gray-200  focus:outline-none focus:text-blue-400 dark:focus:text-blue-400">${doc.data().headline}</a>
+            <a href="${doc.id}" class="truncate-3 text-gray-900 text-base dark:text-gray-200">${doc.data().content}</a></a>
+        </div>
+        </div>
+    `
+    othersGrid.innerHTML += render      
+    
+}
+function fetchOtherBlogs(){
+    let contentLoader = document.getElementById('contentLoader')
+    let limit = contentLoader.getAttribute('data-limit')
+    let previousEnd = contentLoader.getAttribute('data-end')
+    let grid = document.getElementById('othersGrid')
+
+    db.collection("blogs").get().then((querySnapshot) => {
+        for (let index = parseInt(previousEnd); index < querySnapshot.docs.length && index < parseInt(limit); index++) {
+            renderOtherBlogs(querySnapshot.docs[index])
+        }
+    
+        contentLoader.setAttribute('data-limit', parseInt(limit) + 2)
+        contentLoader.setAttribute('data-end', parseInt(previousEnd) + 2)
+
+        if(grid.childElementCount >= querySnapshot.docs.length){
+            contentLoader.style.display = "none"
+        }
+    
+    })
 }
