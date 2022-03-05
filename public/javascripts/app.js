@@ -481,7 +481,6 @@ function renderLatestBlogs(doc) {
             let badge2 = document.getElementsByClassName('latest-tag-badge')[latestBlogEl * 3 + 1]
             let badge3 = document.getElementsByClassName('latest-tag-badge')[latestBlogEl * 3 + 2]
             let blogHeadline = document.getElementsByClassName('latest-blogHeadline')[latestBlogEl]
-            let blogContent = document.getElementsByClassName('latest-blogContent')[latestBlogEl]
 
             image.setAttribute('src', doc[latestBlogEl].data().image)
             blogCategory.innerText = `${doc[latestBlogEl].data().category} -•- `
@@ -511,8 +510,6 @@ function renderLatestBlogs(doc) {
 
             blogHeadline.innerText = doc[latestBlogEl].data().headline
             blogHeadline.href = `/read?id=${doc[latestBlogEl].id}`
-            blogContent.innerText = doc[latestBlogEl].data().content
-            blogContent.href = `/read?id=${doc[latestBlogEl].id}`
         }
     }
 }
@@ -585,8 +582,8 @@ function fetchOtherBlogs(){
             renderOtherBlogs(querySnapshot.docs[index])
         }
     
-        contentLoader.setAttribute('data-limit', parseInt(limit) + 2)
-        contentLoader.setAttribute('data-end', parseInt(previousEnd) + 2)
+        contentLoader.setAttribute('data-limit', parseInt(limit) + 12)
+        contentLoader.setAttribute('data-end', parseInt(previousEnd) + 12)
 
         if(grid.childElementCount >= querySnapshot.docs.length){
             contentLoader.style.display = "none"
