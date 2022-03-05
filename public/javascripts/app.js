@@ -540,6 +540,7 @@ function fetchAllBlogs() {
     fetchOtherBlogs()
 }
 function fetchTopBlogs(){
+    detectTextLoad()
     let topBlogsList = []
     db.collection("blogs").orderBy('views').get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -636,4 +637,33 @@ function fetchBlogsWithTag(){
         }
     
     })
+}
+function removeAnimation(obj) {
+    obj.classList.remove('skeleton')
+    obj.setAttribute('alt', "Thumbnail")
+}
+
+const detectTextLoad = () => {
+    var targetNode = document.getElementsByClassName('skeleton-text')
+    var config = { childList: true };
+    var callback = function(mutationsList, observer) {
+        for(var mutation of mutationsList) {
+            if (mutation.type == 'childList') {
+                removeTextAnimation(targetNode)
+            }
+        }
+    };
+    var observer = new MutationObserver(callback);
+    observer.observe(targetNode[0], config);
+    observer.observe(targetNode[1], config);
+    observer.observe(targetNode[2], config);
+    observer.observe(targetNode[3], config);
+    observer.observe(targetNode[4], config);
+    observer.observe(targetNode[5], config);
+}
+
+function removeTextAnimation(obj) {
+    for (let index = 0; index < obj.length; index++) {
+        obj[index].classList.remove('skeleton-text')
+    }
 }

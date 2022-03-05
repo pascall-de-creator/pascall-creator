@@ -8,8 +8,8 @@
 
     <h1 class="text-2xl mt-10 font-semibold ml-5 border-t-2 pt-3 md:border-t-0 border-t-gray-500 text-gray-900 dark:text-white">Trending</h1>
 
-    <div class="w-full top-blogCard mx-auto flex flex-col lg:flex-row my-3">
-      <img width="auto" height="auto" class="skeleton top-blogImage object-cover h-96 lg:w-6/12 rounded-md w-100%" alt="Thumbnail"> 
+    <div class="w-full top-blogCard mx-auto flex flex-col lg:flex-row my-3 justify-center">
+      <img onload="removeAnimation(this)" width="auto" height="auto" class="skeleton top-blogImage object-cover h-96 lg:w-6/12 rounded-md w-100%"> 
       <div class="ml-3 flex flex-col lg:w-5/12 pt-2 lg:pt-0">
         <div class="flex mb-3 items-end">
             <a  class="mx-1 top-blogCategory w-max text-gray-900 dark:text-gray-300"></a>
@@ -20,8 +20,8 @@
             <a  class="top-tag-badge bg-gray-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"></a>
             <a  class="top-tag-badge bg-gray-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"></a>
         </div>
-          <a style="width: -webkit-fill-available;" class="truncate-3 top-blogHeadline mr-1 mb-3 text-gray-700 sm:text-xl font-semibold leading-normal md:text-xl dark:text-gray-300 focus:outline-none"></a>
-          <a style="width: -webkit-fill-available;" class="truncate-8 my-1 text-clip overflow-hidden top-blogContent text-gray-900 text-base dark:text-gray-200 focus:outline-none"></a>
+          <a style="width: -webkit-fill-available;" class="skeleton-text truncate-3 top-blogHeadline mr-1 mb-3 text-gray-700 sm:text-xl font-semibold leading-normal md:text-xl dark:text-gray-300 focus:outline-none"></a>
+          <a style="width: -webkit-fill-available;" class="skeleton-text truncate-8 my-1 text-clip overflow-hidden top-blogContent text-gray-900 text-base dark:text-gray-200 focus:outline-none"></a>
       </div>
     </div>
 
@@ -30,7 +30,7 @@
     <div class="mt-10 grid justify-items-stretch justify-center grid-rows-4 grid-flow-row gap-4 md:grid-rows-2 md:grid-cols-2 lg:grid-rows-1 lg:grid-cols-4">
       <div class="latest-blogCard justify-between card flex flex-col my-1 max-w-11/12 p-2 bg-gray-100 border-2 border-gray-200 rounded-md dark:bg-gray-800 dark:border-gray-700 h-max">
         <div class="flex flex-col">
-          <img alt="Thumbnail"  width="auto" height="auto" class="skeleton latest-blogImage object-fill w-auto mx-auto md:w-auto rounded-md sm:w-100% md:w-100% md:h-auto">
+          <img onload="removeAnimation(this)"  width="auto" height="auto" class="skeleton latest-blogImage object-fill w-auto mx-auto md:w-auto rounded-md sm:w-100% md:w-100% md:h-auto">
           <div class="mt-5 flex-col">
             <div class="flex mb-3 items-end">
               <a class="latest-blogCategory text-sm w-max mr-1 text-gray-900  dark:text-white"></a>
@@ -41,14 +41,13 @@
               <a  class="latest-tag-badge bg-gray-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"></a>
               <a  class="latest-tag-badge bg-gray-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"></a>
             </div>
-            <a class=" truncate-2 latest-blogHeadline mr-1 mb-3 text-gray-700 sm:text-xl font-semibold leading-normal md:text-xl dark:text-gray-300 focus:outline-none"></a>
-
+            <a class="skeleton-text truncate-2 latest-blogHeadline mr-1 mb-3 text-gray-700 sm:text-xl font-semibold leading-normal md:text-xl dark:text-gray-300 focus:outline-none"></a>
           </div>
         </div>
       </div>
       <div class="latest-blogCard justify-between card flex flex-col my-1 max-w-11/12 p-2 bg-gray-100 border-2 border-gray-200 rounded-md dark:bg-gray-800 dark:border-gray-700 h-max">
         <div class="flex flex-col">
-          <img alt="Thumbnail"  width="auto" height="auto" class="skeleton latest-blogImage object-fill w-auto mx-auto md:w-auto rounded-md sm:w-100% md:w-100% md:h-auto" >
+          <img onload="removeAnimation(this)"  width="auto" height="auto" class="skeleton latest-blogImage object-fill w-auto mx-auto md:w-auto rounded-md sm:w-100% md:w-100% md:h-auto" >
           <div class="mt-5 flex-col">
             <div class="flex mb-3 items-end">
               <a class="latest-blogCategory text-sm w-max mr-1 text-gray-900  dark:text-white"></a>
@@ -59,14 +58,13 @@
               <a  class="latest-tag-badge bg-gray-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"></a>
               <a  class="latest-tag-badge bg-gray-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"></a>
             </div>
-            <a class=" truncate-2 latest-blogHeadline mr-1 mb-3 text-gray-700 sm:text-xl font-semibold leading-normal md:text-xl dark:text-gray-300 focus:outline-none"></a>
-
+            <a class="skeleton-text truncate-2 latest-blogHeadline mr-1 mb-3 text-gray-700 sm:text-xl font-semibold leading-normal md:text-xl dark:text-gray-300 focus:outline-none"></a>
           </div>
         </div>
       </div>
       <div class="latest-blogCard justify-between card flex flex-col my-1 max-w-11/12 p-2 bg-gray-100 border-2 border-gray-200 rounded-md dark:bg-gray-800 dark:border-gray-700 h-max">
         <div class="flex flex-col">
-          <img alt="Thumbnail"  width="auto" height="auto" class="skeleton latest-blogImage object-fill w-auto mx-auto md:w-auto rounded-md sm:w-100% md:w-100% md:h-auto" >
+          <img onload="removeAnimation(this)"  width="auto" height="auto" class="skeleton latest-blogImage object-fill w-auto mx-auto md:w-auto rounded-md sm:w-100% md:w-100% md:h-auto" >
           <div class="mt-5 flex-col">
             <div class="flex mb-3 items-end">
               <a class="latest-blogCategory text-sm w-max mr-1 text-gray-900  dark:text-white"></a>
@@ -77,14 +75,13 @@
               <a  class="latest-tag-badge bg-gray-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"></a>
               <a  class="latest-tag-badge bg-gray-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"></a>
             </div>
-            <a class=" truncate-2 latest-blogHeadline mr-1 mb-3 text-gray-700 sm:text-xl font-semibold leading-normal md:text-xl dark:text-gray-300 focus:outline-none"></a>
-
+            <a class="skeleton-text truncate-2 latest-blogHeadline mr-1 mb-3 text-gray-700 sm:text-xl font-semibold leading-normal md:text-xl dark:text-gray-300 focus:outline-none"></a>
           </div>
         </div>
       </div>
       <div class="latest-blogCard justify-between card flex flex-col my-1 max-w-11/12 p-2 bg-gray-100 border-2 border-gray-200 rounded-md dark:bg-gray-800 dark:border-gray-700 h-max">
         <div class="flex flex-col">
-          <img alt="Thumbnail"  width="auto" height="auto" class="skeleton latest-blogImage object-fill w-auto mx-auto md:w-auto rounded-md sm:w-100% md:w-100% md:h-auto">
+          <img onload="removeAnimation(this)"  width="auto" height="auto" class="skeleton latest-blogImage object-fill w-auto mx-auto md:w-auto rounded-md sm:w-100% md:w-100% md:h-auto">
           <div class="mt-5 flex-col">
             <div class="flex mb-3 items-end">
               <a class="latest-blogCategory text-sm w-max mr-1 text-gray-900  dark:text-white"></a>
@@ -95,8 +92,7 @@
               <a  class="latest-tag-badge bg-gray-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"></a>
               <a  class="latest-tag-badge bg-gray-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500"></a>
             </div>
-            <a class=" truncate-2 latest-blogHeadline mr-1 mb-3 text-gray-700 sm:text-xl font-semibold leading-normal md:text-xl dark:text-gray-300 focus:outline-none"></a>
-
+            <a class="skeleton-text truncate-2 latest-blogHeadline mr-1 mb-3 text-gray-700 sm:text-xl font-semibold leading-normal md:text-xl dark:text-gray-300 focus:outline-none"></a>
           </div>
         </div>
       </div>
