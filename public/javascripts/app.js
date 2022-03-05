@@ -380,7 +380,6 @@ function renderBlog(){
     const urlParams = new URLSearchParams(queryString);
     const blogId = urlParams.get('id')
 
-    console.log(blogId)
     if(blogId == null && blogCollection == null){
         console.log("nothing here")
     } 
@@ -427,6 +426,28 @@ function renderBlog(){
             console.log("Error getting document:", error);
         });
     }
+
+    db.collection("blogs").get().then((querySnapshot) => { // add sugest filter
+        for (let index = 0; index < querySnapshot.docs.length && index < 6; index++) {
+            let doc = querySnapshot.docs[index]
+            let more = document.getElementById('more')
+            var render = 
+            `
+            <div class="card flex flex-col p-3">
+                <div class="tags flex my-2">
+                    <a href="/search?tags=${doc.data().tags[0]}" class="tag  bg-blue-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500">#${doc.data().tags[0] || "info"}</a>
+                    <a href="/search?tags=${doc.data().tags[1]}" class="tag  bg-red-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500">#${doc.data().tags[1] || "update"}</a>
+                    <a href="/search?tags=${doc.data().tags[2]}" class="tag  bg-green-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500">#${doc.data().tags[2] || "blog"}</a>
+                    </div>
+                    <a href="/read?id=${doc.id}" class="truncate-2 mb-3 text-gray-700 sm:text-lg font-semibold leading-normal md:text-2xl w-full hover:text-blue-400 dark:hover:text-blue-400 dark:text-gray-200  focus:outline-none focus:text-blue-400 dark:focus:text-blue-400">${doc.data().headline}</a>
+                    <a href="/read?id=${doc.id}" class="truncate-2 text-gray-900 text-base dark:text-gray-200">${doc.data().content}</a></a>
+                </div>
+            </div>
+            <hr class="my-2 text-gray-500">
+            `
+            more.innerHTML += render
+        }
+    })
 }
 function renderTopBlog(doc) {
     let image = document.getElementsByClassName('top-blogImage')[0]
@@ -563,13 +584,12 @@ function renderOtherBlogs(doc){
             <a href="/search?tags=${doc.data().tags[1]}" class="tag  bg-red-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500">#${doc.data().tags[1] || "update"}</a>
             <a href="/search?tags=${doc.data().tags[2]}" class="tag  bg-green-200 py-1 px-2 rounded-md text-xs mr-1 focus:border-blue-500">#${doc.data().tags[2] || "blog"}</a>
             </div>
-            <a href="${doc.id}" class="truncate-2 mb-3 text-gray-700 sm:text-lg font-semibold leading-normal md:text-2xl w-full hover:text-blue-400 dark:hover:text-blue-400 dark:text-gray-200  focus:outline-none focus:text-blue-400 dark:focus:text-blue-400">${doc.data().headline}</a>
-            <a href="${doc.id}" class="truncate-3 text-gray-900 text-base dark:text-gray-200">${doc.data().content}</a></a>
+            <a href="/read?id=${doc.id}" class="truncate-2 mb-3 text-gray-700 sm:text-lg font-semibold leading-normal md:text-2xl w-full hover:text-blue-400 dark:hover:text-blue-400 dark:text-gray-200  focus:outline-none focus:text-blue-400 dark:focus:text-blue-400">${doc.data().headline}</a>
+            <a href="/read?id=${doc.id}" class="truncate-3 text-gray-900 text-base dark:text-gray-200">${doc.data().content}</a></a>
         </div>
         </div>
     `
-    othersGrid.innerHTML += render      
-    
+    othersGrid.innerHTML += render
 }
 function fetchOtherBlogs(){
     let contentLoader = document.getElementById('contentLoader')
