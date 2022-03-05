@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<%- include("./partials/head.ejs") %>
+<body class="bg-gray-100 dark:bg-gray-800 overflow-y-scroll" onload="fetchBlogsWithTag()">
+  <%- include("./partials/nav.ejs") %>
+  <div id="main" class="flex flex-col container mx-auto">
+    <div id="othersGrid" class="grid grid-cols-1 md:grid-cols-2 gap-2 grid-flow-row my-10 lg:grid-cols-2"> 
+    </div>
+    <a id="contentLoader" onclick="fetchOtherBlogs()" data-limit="12" data-end="0" class="text-gray-900 dark:text-white cursor-pointer btn mx-auto my-5 p-3 border-2 border-cyan-700 rounded-md">Load more content</a>
+  </div>
+  <%- include("./partials/footer.ejs") %>
+  <%- include("./partials/scripts.ejs") %>
+</body>
+</html>
