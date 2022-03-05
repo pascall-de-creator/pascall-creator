@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<%- include("./partials/head.ejs") %>
+<body class="bg-gray-100 dark:bg-gray-800 overflow-y-scroll">
+  <%- include("./partials/nav.ejs") %>
+  <form action="">
+    <div class="w-80 mx-auto bg-white dark:bg-gray-700 shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+        <div class="mb-4">
+          <label class="block text-grey-darker text-sm font-bold mb-2" for="username">Email Address</label>
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="username" type="text" placeholder="eg: Example@email.domain">
+        </div>
+        <div class="mb-6">
+          <label class="block text-grey-darker text-sm font-bold mb-2" for="password">Password</label>
+          <input class="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3" id="password" type="password" placeholder="******************">
+        </div>
+        <div class="flex items-center justify-between">
+          <button class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded" type="button">Sign In</button>
+          <a class="inline-block align-baseline font-bold text-sm text-blue hover:text-blue-darker" href="#">Forgot Password?</a>
+        </div>
+    </div>
+  </form>
+  <%- include("./partials/footer.ejs") %>
+  <%- include("./partials/scripts.ejs") %>
+</body>
+</html>

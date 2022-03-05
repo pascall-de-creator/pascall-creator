@@ -41,6 +41,9 @@ app.get("/read", (req, res) => {
 app.get("/search", (req, res) => {
   res.render('search', {title: "Find astro blogs", path: req.route.path})
 })
+app.get("/login", (req, res) => {
+  res.render('admin-login', {title: "Find astro blogs", path: req.route.path})
+})
 app.use((req, res) => {
   res.status = 404
   res.render('error', {title: "Page not found", path: path, errorCode: res.status, errorMessage: "Hmm.. looks like we cant find this galaxy... we have to go back to the milkyWay" })
